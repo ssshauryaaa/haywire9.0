@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Hexagon, Cog, Globe, Microscope, TrendingUp, Award, Users, Zap } from "lucide-react";
 
 const stats = [
@@ -34,10 +34,8 @@ const pillars = [
   },
 ];
 
-// Animated counter component with spring
 function AnimatedCounter({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (!active) return;
     let start = 0;
@@ -54,109 +52,14 @@ function AnimatedCounter({ target, suffix, active }: { target: number; suffix: s
     }, 16);
     return () => clearInterval(timer);
   }, [target, active]);
-
-  return (
-    <span className="text-5xl md:text-6xl font-black tracking-tighter text-white">
-      {count}{suffix}
-    </span>
-  );
-}
-
-// Stat card with hover 3d effect
-function StatCard({ stat, active, index }: { stat: typeof stats[0]; active: boolean; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -5;
-    const rotateY = ((x - centerX) / centerX) * 5;
-    setRotate({ x: rotateX, y: rotateY });
-  };
-
-  const handleMouseLeave = () => setRotate({ x: 0, y: 0 });
-
-  return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
-      }}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="group relative bg-white/[0.02] border border-white/10 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-white/30 hover:bg-white/[0.05] shadow-xl"
-    >
-      <div className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"
-        style={{ boxShadow: "0 0 30px rgba(255,255,255,0.05)" }} />
-      <div className="relative z-10">
-        <div className="mb-4 text-white/30 group-hover:text-white/50 transition-colors">
-          <stat.icon className="w-8 h-8" />
-        </div>
-        <div className="font-mono font-bold tracking-tighter text-white">
-          <AnimatedCounter target={stat.num} suffix={stat.suffix} active={active} />
-        </div>
-        <div className="mt-3 text-[11px] tracking-[0.2em] uppercase text-white/40 group-hover:text-white/60 transition-colors">
-          {stat.label}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-// Pillar card with staggered entrance and hover effects
-function PillarCard({ pillar, index }: { pillar: typeof pillars[0]; index: number }) {
-  const Icon = pillar.icon;
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -40 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-      transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
-      whileHover={{ scale: 1.02, x: 8 }}
-      className="group relative bg-white/[0.01] border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-start gap-6 transition-all duration-500 hover:border-white/30 hover:bg-white/[0.04] cursor-pointer"
-    >
-      {/* Glowing line on hover */}
-      <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-white/40 transition-all duration-500 group-hover:w-full" />
-
-      <motion.div
-        whileHover={{ rotate: 5, scale: 1.1 }}
-        className="w-14 h-14 md:w-16 md:h-16 rounded-xl flex-shrink-0 flex items-center justify-center border border-white/10 bg-white/[0.02] text-white/50 group-hover:text-white group-hover:border-white/30 transition-all duration-300"
-      >
-        <Icon className="w-7 h-7 md:w-8 md:h-8" />
-      </motion.div>
-
-      <div className="flex-1">
-        <h3 className="text-base md:text-lg font-bold uppercase tracking-wider text-white/80 group-hover:text-white transition-colors mb-3 font-mono">
-          {pillar.title}
-        </h3>
-        <p className="text-sm md:text-base leading-relaxed text-white/40 group-hover:text-white/60 transition-colors">
-          {pillar.desc}
-        </p>
-      </div>
-    </motion.div>
-  );
+  return <>{count}{suffix}</>;
 }
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [countersActive, setCountersActive] = useState(false);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -172,184 +75,142 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
-  // Text animation variants
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-    },
-  };
-
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#0A0A0A] text-white overflow-hidden"
       style={{
-        paddingTop: "clamp(100px, 12vw, 160px)",
-        paddingBottom: "clamp(80px, 10vw, 140px)",
-        paddingLeft: "clamp(20px, 5vw, 80px)",
-        paddingRight: "clamp(20px, 5vw, 80px)",
+        position: "relative",
+        width: "100%",
+        background: "#0A0A0A",
+        color: "white",
+        overflow: "hidden",
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 5vw, 80px)",
       }}
     >
-      {/* Animated background gradient orbs */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] bg-white/5 blur-[150px] rounded-full pointer-events-none"
-      />
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-white/5 blur-[150px] rounded-full pointer-events-none"
-      />
+      {/* Animated background orbs */}
+      <motion.div style={{ y: bgY, position: "absolute", top: "-20%", left: "-20%", width: "60%", height: "60%", background: "rgba(255,255,255,0.05)", filter: "blur(150px)", borderRadius: "50%", pointerEvents: "none" }} />
+      <motion.div style={{ y: bgY, position: "absolute", bottom: "-20%", right: "-20%", width: "60%", height: "60%", background: "rgba(255,255,255,0.05)", filter: "blur(150px)", borderRadius: "50%", pointerEvents: "none" }} />
 
-      {/* Grid pattern with parallax */}
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+      {/* Grid pattern */}
+      <div style={{ position: "absolute", inset: 0, opacity: 0.2, pointerEvents: "none", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
-      {/* Animated lines */}
-      <div className="absolute left-0 top-1/4 w-px h-32 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-      <div className="absolute right-0 bottom-1/4 w-px h-32 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Section Header */}
+      <div style={{ position: "relative", zIndex: 10, maxWidth: "1280px", margin: "0 auto" }}>
+        {/* Header */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="text-center mb-20 md:mb-28"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          style={{ textAlign: "center", marginBottom: "5rem" }}
         >
-          <motion.div
-            variants={fadeUp}
-            className="inline-flex items-center gap-3 border border-white/10 bg-white/[0.02] rounded-full px-4 py-2 mb-6 backdrop-blur-sm"
-          >
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-white/60 font-medium">The Future of Education</span>
-          </motion.div>
-
-          <motion.h2
-            variants={fadeUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1]"
-            style={{ fontFamily: "var(--font-syne), sans-serif" }}
-          >
-            <span className="text-white">Redefining</span>
-            <br />
-            <span className="text-white/20">Learning Experience</span>
-          </motion.h2>
-
-          <motion.div
-            variants={fadeUp}
-            className="w-24 h-[1px] bg-white/20 mx-auto mt-12"
-          />
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.02)", borderRadius: "999px", padding: "0.5rem 1rem", marginBottom: "1.5rem" }}>
+            <span style={{ width: "0.5rem", height: "0.5rem", background: "white", borderRadius: "50%", animation: "pulse 2s infinite" }} />
+            <span style={{ fontSize: "0.625rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>About Us</span>
+          </div>
+          <h2 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: "bold", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+            <span style={{ color: "white" }}>Redefining</span><br />
+            <span style={{ color: "rgba(255,255,255,0.2)" }}>Learning Experience</span>
+          </h2>
         </motion.div>
 
         {/* Stats Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-28"
-        >
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.25rem", marginBottom: "7rem" }}>
           {stats.map((stat, idx) => (
-            <StatCard key={stat.label} stat={stat} active={countersActive} index={idx} />
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.3)" }}
+              style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "1rem", padding: "1.5rem", textAlign: "center", transition: "all 0.3s" }}
+            >
+              <stat.icon style={{ width: "2rem", height: "2rem", margin: "0 auto 0.75rem", opacity: 0.4 }} />
+              <div style={{ fontSize: "2.25rem", fontWeight: 900, letterSpacing: "-0.02em", color: "white" }}>
+                <AnimatedCounter target={stat.num} suffix={stat.suffix} active={countersActive} />
+              </div>
+              <div style={{ fontSize: "0.6875rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: "0.5rem" }}>{stat.label}</div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left Column - Quote / Vision */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "4rem" }}>
+          {/* Left Column */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="space-y-8"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <div className="relative">
-              <div className="absolute -top-6 -left-6 text-8xl font-serif text-white/5">“</div>
-              <p className="text-xl md:text-2xl leading-relaxed text-white/70 italic font-light relative z-10">
-                Smart School 2040 runs on a hybrid intelligence model — human teachers collaborate with AI tutors to deliver lessons that are personalised and project-based.
+            <div style={{ position: "relative" }}>
+              <div style={{ position: "absolute", top: "-1.5rem", left: "-1.5rem", fontSize: "5rem", color: "rgba(255,255,255,0.05)" }}>“</div>
+              <p style={{ fontSize: "clamp(1.25rem, 3vw, 1.5rem)", lineHeight: 1.5, color: "rgba(255,255,255,0.7)", fontStyle: "italic", position: "relative", zIndex: 1 }}>
+                Smart School 2040 runs on a hybrid intelligence model — human teachers collaborate with AI tutors to deliver personalised, project-based lessons.
               </p>
             </div>
 
-            <div className="flex gap-5 flex-wrap pt-6">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-black text-xs tracking-[0.2em] uppercase font-bold rounded-full hover:bg-gray-200 transition-all shadow-xl"
-                style={{ fontFamily: "var(--font-orbitron), monospace" }}
-              >
-                Explore Campus →
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border border-white/10 text-white/50 text-xs tracking-[0.2em] uppercase rounded-full hover:border-white/30 hover:text-white transition-all"
-                style={{ fontFamily: "var(--font-orbitron), monospace" }}
-              >
-                Our Curriculum
-              </motion.button>
+            <div style={{ display: "flex", gap: "1rem", marginTop: "2.5rem", flexWrap: "wrap" }}>
+              <button style={{ padding: "0.75rem 2rem", background: "white", color: "black", fontSize: "0.75rem", fontWeight: "bold", textTransform: "uppercase", borderRadius: "999px", border: "none", cursor: "pointer", transition: "0.3s" }}>Explore Campus →</button>
+              <button style={{ padding: "0.75rem 2rem", border: "1px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.6)", fontSize: "0.75rem", fontWeight: "bold", textTransform: "uppercase", borderRadius: "999px", cursor: "pointer", transition: "0.3s" }}>Our Curriculum</button>
             </div>
 
-            {/* Evaluation Framework - redesigned as floating badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden border border-white/10 rounded-2xl p-6 md:p-8 bg-white/[0.01] backdrop-blur-sm mt-8"
-            >
-              <p className="mb-6 text-[10px] tracking-[0.25em] uppercase text-white/40 font-bold">Evaluation Framework</p>
-              <div className="flex flex-wrap gap-3">
-                {["Originality", "Utility", "Aesthetics", "Technical"].map((item, i) => (
-                  <motion.span
-                    key={item}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-                    className="px-4 py-2 rounded-full border border-white/10 text-white/50 text-xs font-mono tracking-wide"
-                  >
-                    {item}
-                  </motion.span>
+            <div style={{ marginTop: "3rem", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "1rem", padding: "1.5rem", background: "rgba(255,255,255,0.01)" }}>
+              <p style={{ fontSize: "0.625rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "1rem" }}>Evaluation Framework</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {["Originality", "Utility", "Aesthetics", "Technical"].map((item) => (
+                  <span key={item} style={{ padding: "0.25rem 1rem", borderRadius: "999px", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", fontSize: "0.75rem", fontFamily: "monospace" }}>{item}</span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right Column - Core Pillars */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-4"
-            >
-              <span className="h-px w-8 bg-white/40" />
-              <span className="text-[10px] tracking-[0.3em] uppercase text-white/60 font-bold">Core Pillars</span>
-            </motion.div>
-
-            <div className="space-y-5">
-              {pillars.map((pillar, idx) => (
-                <PillarCard key={pillar.title} pillar={pillar} index={idx} />
-              ))}
+          {/* Right Column */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
+              <span style={{ height: "1px", width: "2rem", background: "rgba(255,255,255,0.4)" }} />
+              <span style={{ fontSize: "0.625rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>Core Pillars</span>
             </div>
-          </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              {pillars.map((pillar, idx) => {
+                const Icon = pillar.icon;
+                return (
+                  <motion.div
+                    key={pillar.title}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ x: 8, borderColor: "rgba(255,255,255,0.3)" }}
+                    style={{ display: "flex", gap: "1.25rem", padding: "1.5rem", borderRadius: "1rem", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.01)", transition: "all 0.3s" }}
+                  >
+                    <div style={{ width: "3rem", height: "3rem", borderRadius: "0.75rem", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.5)", transition: "0.3s" }}>
+                      <Icon style={{ width: "1.5rem", height: "1.5rem" }} />
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: "0.875rem", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.05em", color: "rgba(255,255,255,0.8)", marginBottom: "0.5rem" }}>{pillar.title}</h3>
+                      <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>{pillar.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Keyframe animation for pulse */}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
     </section>
   );
 }
