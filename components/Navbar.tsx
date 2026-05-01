@@ -65,14 +65,14 @@ export default function Navbar() {
             borderRadius: "999px",
             overflow: "hidden",
             background: scrolled
-              ? "rgba(255, 255, 255, 0.88)"
-              : "rgba(255, 255, 255, 0.68)",
+              ? "rgba(0, 0, 0, 0.88)"
+              : "rgba(0, 0, 0, 0.68)",
             backdropFilter: "blur(24px) saturate(180%)",
             WebkitBackdropFilter: "blur(24px) saturate(180%)",
-            border: "1px solid rgba(79, 70, 229, 0.18)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
             boxShadow: scrolled
-              ? "0 8px 32px rgba(49,46,129,0.14), 0 2px 8px rgba(49,46,129,0.06), inset 0 1px 0 rgba(255,255,255,0.9)"
-              : "0 4px 24px rgba(49,46,129,0.09), inset 0 1px 0 rgba(255,255,255,0.8)",
+              ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.12)"
+              : "0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
             transition: "background 0.4s ease, box-shadow 0.4s ease",
             maxWidth: "820px",
             width: "100%",
@@ -88,8 +88,8 @@ export default function Navbar() {
               opacity: isHovered ? 1 : 0,
               transition: "opacity 0.25s ease",
               background: `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px,
-                rgba(79,70,229,0.14) 0%,
-                rgba(244,63,94,0.07) 45%,
+                rgba(255,255,255,0.12) 0%,
+                rgba(255,255,255,0.04) 45%,
                 transparent 70%)`,
             }}
           />
@@ -104,9 +104,9 @@ export default function Navbar() {
               opacity: isHovered ? 1 : 0,
               transition: "opacity 0.25s ease",
               background: `radial-gradient(180px circle at ${mousePos.x}px ${mousePos.y}px,
-                rgba(79,70,229,0.28) 0%,
+                rgba(255,255,255,0.25) 0%,
                 transparent 65%)`,
-              mixBlendMode: "multiply",
+              mixBlendMode: "overlay",
             }}
           />
 
@@ -119,14 +119,14 @@ export default function Navbar() {
               fontWeight: 900,
               textDecoration: "none",
               letterSpacing: "-0.02em",
-              color: "#4F46E5",
+              color: "#FFFFFF",
               flexShrink: 0,
               position: "relative",
               zIndex: 1,
               lineHeight: 1,
             }}
           >
-            SS<span style={{ color: "#0F172A" }}>2040</span>
+            SS<span style={{ color: "#AAAAAA" }}>2040</span>
           </Link>
 
           {/* Divider */}
@@ -135,7 +135,7 @@ export default function Navbar() {
             style={{
               width: 1,
               height: 18,
-              background: "rgba(79,70,229,0.15)",
+              background: "rgba(255, 255, 255, 0.2)",
               flexShrink: 0,
               marginLeft: "8px",
             }}
@@ -177,7 +177,7 @@ export default function Navbar() {
               border: "none",
               cursor: "pointer",
               padding: "6px",
-              color: "#4F46E5",
+              color: "#FFFFFF",
               position: "relative",
               zIndex: 1,
               display: "none",
@@ -200,12 +200,12 @@ export default function Navbar() {
             left: "24px",
             right: "24px",
             zIndex: 99,
-            background: "rgba(255,255,255,0.96)",
+            background: "rgba(0, 0, 0, 0.96)",
             backdropFilter: "blur(24px)",
             WebkitBackdropFilter: "blur(24px)",
             borderRadius: "20px",
-            border: "1px solid rgba(79,70,229,0.12)",
-            boxShadow: "0 16px 48px rgba(49,46,129,0.13)",
+            border: "1px solid rgba(255, 255, 255, 0.12)",
+            boxShadow: "0 16px 48px rgba(0, 0, 0, 0.5)",
             padding: "12px",
             display: "flex",
             flexDirection: "column",
@@ -221,19 +221,19 @@ export default function Navbar() {
                 fontFamily: "var(--font-syne), sans-serif",
                 fontSize: "0.9rem",
                 fontWeight: 600,
-                color: "#0F172A",
+                color: "#EEEEEE",
                 textDecoration: "none",
                 padding: "12px 16px",
                 borderRadius: "12px",
                 transition: "background 0.2s ease",
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = "rgba(79,70,229,0.07)"; }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
             >
               {l.label}
             </Link>
           ))}
-          <div style={{ height: 1, background: "rgba(79,70,229,0.08)", margin: "4px 0" }} />
+          <div style={{ height: 1, background: "rgba(255, 255, 255, 0.08)", margin: "4px 0" }} />
           <Link
             href="/features"
             style={{
@@ -245,8 +245,8 @@ export default function Navbar() {
               textDecoration: "none",
               padding: "13px 16px",
               borderRadius: "12px",
-              background: "#4F46E5",
-              color: "#fff",
+              background: "#FFFFFF",
+              color: "#000000",
               textAlign: "center",
             }}
           >
@@ -285,8 +285,8 @@ function NavLink({ href, label }: { href: string; label: string }) {
         textDecoration: "none",
         padding: "7px 14px",
         borderRadius: "999px",
-        color: hovered ? "#4F46E5" : "#64748B",
-        background: hovered ? "rgba(79,70,229,0.08)" : "transparent",
+        color: hovered ? "#FFFFFF" : "#CCCCCC",
+        background: hovered ? "rgba(255, 255, 255, 0.12)" : "transparent",
         transition: "all 0.2s ease",
         whiteSpace: "nowrap",
       }}
@@ -296,7 +296,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-/* ── CTA pill — Indigo → Rose gradient on hover ── */
+/* ── CTA pill — Black → Dark Gray gradient on hover ── */
 function CTAButton() {
   const [hovered, setHovered] = useState(false);
   return (
@@ -315,12 +315,12 @@ function CTAButton() {
         padding: "9px 22px",
         borderRadius: "999px",
         background: hovered
-          ? "linear-gradient(135deg, #4F46E5 0%, #F43F5E 100%)"
-          : "#4F46E5",
-        color: "#fff",
+          ? "linear-gradient(135deg, #333333 0%, #111111 100%)"
+          : "#000000",
+        color: "#FFFFFF",
         boxShadow: hovered
-          ? "0 0 20px rgba(79,70,229,0.5), 0 0 40px rgba(244,63,94,0.18)"
-          : "0 2px 10px rgba(79,70,229,0.35)",
+          ? "0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1)"
+          : "0 2px 10px rgba(0,0,0,0.5)",
         transform: hovered ? "translateY(-1px)" : "translateY(0)",
         transition: "all 0.28s cubic-bezier(0.4, 0, 0.2, 1)",
         whiteSpace: "nowrap",

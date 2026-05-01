@@ -1,18 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import Link from "next/link";
-import Spline from "@splinetool/react-spline";
-
-const words = ["AI-Powered", "Immersive", "Intelligent", "Future-Ready"];
-
-const stats = [
-  { num: "500+", label: "AI Modules" },
-  { num: "40+", label: "VR Labs" },
-  { num: "98%", label: "Pass Rate" },
-  { num: "2040", label: "Vision" },
-];
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 function MouseGlow() {
   const x = useMotionValue(0);
@@ -30,13 +19,7 @@ function MouseGlow() {
   }, [x, y]);
 
   return (
-    <motion.div
-      className="pointer-events-none fixed inset-0 z-0"
-      style={{
-        background:
-          "radial-gradient(600px circle at var(--mx) var(--my), rgba(102,252,241,0.04), transparent 60%)",
-      }}
-    >
+    <motion.div className="pointer-events-none fixed inset-0 z-0">
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
@@ -44,68 +27,14 @@ function MouseGlow() {
           y: sy,
           translateX: "-50%",
           translateY: "-50%",
-          background:
-            "radial-gradient(circle, rgba(102,252,241,0.06) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)",
         }}
       />
     </motion.div>
   );
 }
 
-function GlassStatCard({ num, label, index }: { num: string; label: string; index: number }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.8 + index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      className="relative group cursor-default pointer-events-auto"
-    >
-      <motion.div
-        animate={{
-          background: hovered ? "rgba(102,252,241,0.07)" : "rgba(6,8,16,0.6)",
-          borderColor: hovered ? "rgba(102,252,241,0.35)" : "rgba(255,255,255,0.07)",
-        }}
-        transition={{ duration: 0.3 }}
-        className="px-6 py-4 rounded-xl border backdrop-blur-md relative overflow-hidden text-center min-w-[120px]"
-      >
-        {/* Glass shine */}
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0, x: hovered ? "200%" : "-100%" }}
-          transition={{ duration: 0.55 }}
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(105deg, transparent 30%, rgba(102,252,241,0.08) 50%, transparent 70%)",
-          }}
-        />
-        <motion.div
-          animate={{ color: hovered ? "#66FCF1" : "#66FCF1" }}
-          className="font-mono text-2xl font-black text-cyan"
-          style={{ textShadow: hovered ? "0 0 20px rgba(102,252,241,0.5)" : "none" }}
-        >
-          {num}
-        </motion.div>
-        <div className="text-[0.65rem] uppercase tracking-widest text-white/50 mt-1">
-          {label}
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 export default function Hero() {
-  const [wordIdx, setWordIdx] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIdx((i) => (i + 1) % words.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section
       id="home"
@@ -113,28 +42,35 @@ export default function Hero() {
         position: "relative",
         width: "100%",
         height: "100vh",
-        background: "#060810",
+        background: "#0A0A0A",
         overflow: "hidden",
       }}
     >
-      {/* ── BACKGROUND LAYERS ── */}
+      {/* ── BACKGROUND LAYERS (BLACK & WHITE / GRAYSCALE) ── */}
       <MouseGlow />
       <div
-        className="absolute inset-0 pointer-events-none opacity-30 z-0"
         style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          opacity: 0.25,
+          zIndex: 0,
           backgroundImage:
-            "linear-gradient(rgba(102,252,241,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(102,252,241,0.06) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
         }}
       />
       <div
-        className="absolute inset-0 pointer-events-none z-0"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 20%, #060810 90%)",
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 0,
+          background: "radial-gradient(ellipse at center, transparent 20%, #0A0A0A 90%)",
         }}
       />
 
-      {/* ── SPLINE — full section, centered ── */}
+      {/* ── SPLINE 3D MODEL — shifted left ── */}
       <div
         style={{
           position: "absolute",
@@ -144,7 +80,7 @@ export default function Hero() {
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "auto",
-
+          transform: "translate(-12%, 5%)",
         }}
       >
         <iframe
@@ -156,9 +92,136 @@ export default function Hero() {
             height: "80%",
             border: "none",
             display: "block",
+            margin: "auto",
           }}
           title="Smart School 2040 Spline Interaction"
         />
+      </div>
+
+      {/* ── TEXT OVERLAY — right side, pure grayscale elegance ── */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: "28%",
+          zIndex: 20,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "0 2rem",
+          pointerEvents: "none",
+          transform: "translateY(-5%)",
+        }}
+      >
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            marginBottom: "1.5rem",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "0.65rem",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)",
+              fontFamily: "var(--font-orbitron), monospace",
+              border: "0.5px solid rgba(255,255,255,0.15)",
+              padding: "0.3rem 0.9rem",
+              borderRadius: "999px",
+            }}
+          >
+            Est. 2040
+          </span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          style={{
+            fontSize: "clamp(2rem, 3.5vw, 3rem)",
+            fontWeight: 800,
+            lineHeight: 1.1,
+            color: "#FFFFFF",
+            marginBottom: "0.4rem",
+            fontFamily: "var(--font-syne), sans-serif",
+            letterSpacing: "-0.03em",
+          }}
+        >
+          Smart School
+        </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
+          style={{
+            fontSize: "clamp(2rem, 3.5vw, 3rem)",
+            fontWeight: 800,
+            lineHeight: 1.1,
+            color: "#FFFFFF",
+            marginBottom: "0.75rem",
+            fontFamily: "var(--font-syne), sans-serif",
+            letterSpacing: "-0.03em",
+          }}
+        >
+          2040
+        </motion.h1>
+
+        {/* Subheading */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          style={{
+            fontSize: "0.85rem",
+            color: "rgba(255,255,255,0.45)",
+            fontStyle: "italic",
+            marginBottom: "1.75rem",
+            letterSpacing: "0.01em",
+          }}
+        >
+          Where Learning Meets the Future
+        </motion.p>
+
+        {/* Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
+          style={{
+            height: "0.5px",
+            background: "rgba(255,255,255,0.15)",
+            width: "80%",
+            marginBottom: "1.75rem",
+            transformOrigin: "left",
+          }}
+        />
+
+        {/* Body text */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.75 }}
+          style={{
+            fontSize: "0.88rem",
+            lineHeight: 1.8,
+            color: "rgba(255,255,255,0.55)",
+            maxWidth: "28ch",
+          }}
+        >
+          Imagine a school where technology transforms every classroom into an interactive,
+          intelligent, and immersive learning space.
+        </motion.p>
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Orbitron, Syne, Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -25,19 +27,19 @@ export const metadata: Metadata = {
   description: "A futuristic smart school powered by AI, robotics, virtual reality, and digital innovation.",
 };
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${syne.variable} ${inter.variable}`}>
-      {/* 1. Add flex flex-col and min-h-screen here */}
-      <body className="antialiased font-inter flex flex-col min-h-screen">
+    <html
+      lang="en"
+      className={`${orbitron.variable} ${syne.variable} ${inter.variable}`}
+    >
+      <body className="antialiased bg-darker text-text font-inter flex flex-col min-h-screen overflow-x-hidden">
         <Navbar />
-        {/* 2. Wrap children in a main tag with flex-grow to push footer down */}
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

@@ -189,7 +189,7 @@ export default function About() {
       style={{
         position: "relative",
         width: "100%",
-        overflowX: "hidden",
+        // overflowX: "hidden",
         paddingTop: "112px",
         paddingBottom: "112px",
         background: "#0F1220",
