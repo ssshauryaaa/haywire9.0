@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -1223,7 +1225,7 @@ function CTASection() {
           }}
         >
           No prerequisites. No gatekeeping. Just curiosity and a willingness to
-          build things that haven't been built before.
+          build things that haven&apos;t been built before.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1345,11 +1347,16 @@ function SplineEmbed() {
 
   useEffect(() => {
     // Wait until page is idle before mounting the iframe
-    const id = requestIdleCallback
+    const useIdle = typeof requestIdleCallback !== 'undefined';
+    const id = useIdle
       ? requestIdleCallback(() => setShouldMount(true), { timeout: 2000 })
       : setTimeout(() => setShouldMount(true), 1000);
     return () => {
-      requestIdleCallback ? cancelIdleCallback(id as number) : clearTimeout(id as number);
+      if (useIdle) {
+        cancelIdleCallback(id as number);
+      } else {
+        clearTimeout(id as number);
+      }
     };
   }, []);
 
