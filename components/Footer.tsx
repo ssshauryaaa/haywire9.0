@@ -151,7 +151,7 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", fontSize: "0.8rem" }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                 <MapPin size={16} style={{ color: "#fff", flexShrink: 0 }} />
-                <span>Sector 7G,<br />Grid Alpha 94025</span>
+                <span>Tagore Int.<br />Vasant Viahr</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <Terminal size={16} style={{ color: "#fff", flexShrink: 0 }} />
@@ -159,7 +159,7 @@ export default function Footer() {
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <Mail size={16} style={{ color: "#fff", flexShrink: 0 }} />
-                <span>ping@system2040.io</span>
+                <span>pyrotech@tagoreint.com</span>
               </div>
             </div>
           </div>

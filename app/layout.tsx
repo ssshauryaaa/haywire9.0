@@ -39,7 +39,7 @@ export default function RootLayout({
     >
       <body className="antialiased bg-darker text-text font-inter flex flex-col min-h-screen overflow-x-hidden">
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
