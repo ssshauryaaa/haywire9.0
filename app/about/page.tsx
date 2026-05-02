@@ -10,6 +10,9 @@ import {
   ChevronLeft, ChevronRight, Quote
 } from "lucide-react";
 
+import { useRouter } from "next/navigation";
+
+
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const stats = [
@@ -449,6 +452,7 @@ export default function AboutPage() {
     visible: { opacity: 1, x: 0,    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
   };
 
+  const router = useRouter();
   return (
     <div ref={pageRef} className="relative min-h-screen bg-black text-white overflow-x-hidden">
 
@@ -538,17 +542,19 @@ export default function AboutPage() {
               {/* CTAs */}
               <div className="flex gap-4 flex-wrap justify-center">
                 <button
+                onClick={() => router.push("/features")}
                   className="px-10 py-3.5 bg-white text-black text-[10px] font-bold uppercase tracking-[0.2em] rounded-full transition-all duration-300"
                   style={{ letterSpacing: "0.2em" }}
                   onMouseEnter={e => { (e.target as HTMLElement).style.transform = "scale(1.05)"; }}
                   onMouseLeave={e => { (e.target as HTMLElement).style.transform = "scale(1)"; }}
                 >
-                  Explore Campus →
+                  Explore Features →
                 </button>
-                <button
+                <button 
+                onClick={() => router.push("/facilities")}
                   className="px-10 py-3.5 border border-white/20 text-white/55 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:border-white/45 hover:text-white"
                 >
-                  Our Curriculum
+                  Our Faicilities
                 </button>
               </div>
             </motion.div>
