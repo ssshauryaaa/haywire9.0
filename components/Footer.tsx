@@ -1,197 +1,567 @@
 "use client";
+
 import Link from "next/link";
-import { X, Mail, MapPin, Globe, Send, Terminal, ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import {
+  X, Mail, MapPin, Globe, Send, Terminal,
+  ArrowUpRight, Atom, Radio, Cpu, Brain,
+} from "lucide-react";
+
+// ─── AMBIENT CANVAS ───────────────────────────────────────────────────────────
+
+function FooterCanvas() {
+  const ref = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const c = ref.current; if (!c) return;
+    const ctx = c.getContext("2d")!;
+    let W = c.width = c.offsetWidth;
+    let H = c.height = c.offsetHeight;
+
+    const pts = Array.from({ length: 40 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
+      r: 0.6 + Math.random() * 1,
+    }));
+
+    let id: number;
+    const draw = () => {
+      id = requestAnimationFrame(draw);
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.18)"; ctx.fill();
+      });
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+        const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+        if (d < 100) {
+          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(255,255,255,${(1 - d / 100) * 0.055})`;
+          ctx.lineWidth = 0.5; ctx.stroke();
+        }
+      }
+    };
+    draw();
+
+    const onR = () => { W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; };
+    window.addEventListener("resize", onR);
+    return () => { cancelAnimationFrame(id); window.removeEventListener("resize", onR); };
+  }, []);
+
+  return (
+    <canvas
+      ref={ref}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ opacity: 1 }}
+    />
+  );
+}
+
+// ─── SPINNING CUBE (replaces old one, now uses CSS 3D like original but elevated) ──
+
+function SpinningCube({ size = 22 }: { size?: number }) {
+  return (
+    <div style={{ perspective: "300px", width: size, height: size, flexShrink: 0 }}>
+      <div
+        style={{
+          width: "100%", height: "100%", position: "relative",
+          transformStyle: "preserve-3d",
+          animation: "footerSpin 12s infinite linear",
+        }}
+      >
+        {[
+          "translateZ(" + size/2 + "px)",
+          "rotateY(180deg) translateZ(" + size/2 + "px)",
+          "rotateY(90deg) translateZ(" + size/2 + "px)",
+          "rotateY(-90deg) translateZ(" + size/2 + "px)",
+          "rotateX(90deg) translateZ(" + size/2 + "px)",
+          "rotateX(-90deg) translateZ(" + size/2 + "px)",
+        ].map((t, i) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute", width: "100%", height: "100%",
+              border: "1px solid rgba(255,255,255,0.35)",
+              background: "rgba(255,255,255,0.02)",
+              transform: t,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── TICKER ───────────────────────────────────────────────────────────────────
+
+function FooterTicker() {
+  const items = [
+    "QCL-01 · Quantum Lab",
+    "NIS-02 · Neural Studio",
+    "HAR-03 · Holo Arena",
+    "RBY-04 · Robotics Bay",
+    "DSO-05 · Observatory",
+    "BSL-06 · BioSynth Lab",
+    "CGA-07 · CyberGrid",
+    "ZGD-08 · Zero-G Studio",
+  ].join("   ——   ");
+
+  return (
+    <div
+      className="overflow-hidden whitespace-nowrap"
+      style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+    >
+      <motion.div
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="inline-block py-2.5"
+        style={{ fontSize: "8px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.2)", textTransform: "uppercase" }}
+      >
+        {`${items}   ——   ${items}   ——   `}
+      </motion.div>
+    </div>
+  );
+}
+
+// ─── STAT COUNTER ─────────────────────────────────────────────────────────────
+
+function StatCounter({ value, label }: { value: string; label: string }) {
+  const ref    = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="text-center"
+    >
+      <div
+        className="font-black"
+        style={{ fontSize: "clamp(22px, 3vw, 36px)", letterSpacing: "-0.04em", lineHeight: 1 }}
+      >
+        {value}
+      </div>
+      <div className="mt-1 text-[8px] tracking-[0.28em] uppercase" style={{ color: "rgba(255,255,255,0.28)" }}>
+        {label}
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── NAV LINK ─────────────────────────────────────────────────────────────────
+
+function NavLink({ label, href }: { label: string; href: string }) {
+  return (
+    <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+      <Link
+        href={href}
+        className="group flex items-center gap-1 text-sm font-light transition-colors duration-200"
+        style={{ color: "rgba(255,255,255,0.38)", textDecoration: "none" }}
+        onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
+        onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
+      >
+        <span>{label}</span>
+        <ArrowUpRight
+          className="w-2.5 h-2.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+        />
+      </Link>
+    </motion.li>
+  );
+}
+
+// ─── SOCIAL ICON ──────────────────────────────────────────────────────────────
+
+function SocialBtn({ icon, href, label }: { icon: React.ReactNode; href: string; label: string }) {
+  return (
+    <motion.a
+      href={href}
+      aria-label={label}
+      whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.4)", color: "#fff" } as any}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.2 }}
+      style={{
+        display: "flex", alignItems: "center", justifyContent: "center",
+        width: 36, height: 36, borderRadius: "10px",
+        border: "1px solid rgba(255,255,255,0.1)",
+        background: "rgba(255,255,255,0.03)",
+        color: "rgba(255,255,255,0.45)",
+        textDecoration: "none", flexShrink: 0,
+      }}
+    >
+      {icon}
+    </motion.a>
+  );
+}
+
+// ─── SUBMIT BUTTON with animation ─────────────────────────────────────────────
+
+function SubmitBtn() {
+  const [sent, setSent] = useState(false);
+  const handle = () => { setSent(true); setTimeout(() => setSent(false), 2500); };
+  return (
+    <motion.button
+      onClick={handle}
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.97 }}
+      style={{
+        background: sent ? "rgba(255,255,255,0.15)" : "#fff",
+        color: sent ? "#fff" : "#000",
+        border: sent ? "1px solid rgba(255,255,255,0.2)" : "none",
+        padding: "0 14px", borderRadius: "10px",
+        cursor: "crosshair", flexShrink: 0,
+        display: "flex", alignItems: "center", gap: "6px",
+        fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase",
+        fontWeight: 700, height: "100%",
+        transition: "background 0.3s, color 0.3s, border 0.3s",
+      }}
+    >
+      <AnimatePresence mode="wait">
+        {sent ? (
+          <motion.span
+            key="sent"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            style={{ display: "flex", alignItems: "center", gap: 5 }}
+          >
+            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 11 }}>✓</span> Linked
+          </motion.span>
+        ) : (
+          <motion.span
+            key="send"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            style={{ display: "flex", alignItems: "center", gap: 5 }}
+          >
+            <Send size={11} /> Transmit
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  );
+}
+
+// ─── MAIN FOOTER ──────────────────────────────────────────────────────────────
+
+const NAV_COLS = [
+  {
+    title: "Platform",
+    links: [
+      { label: "Home",         href: "/" },
+      { label: "About Us",     href: "/about" },
+      { label: "How It Works", href: "/how-it-works" },
+      { label: "Facilities",   href: "/facilities" },
+    ],
+  },
+  {
+    title: "Ecosystem",
+    links: [
+      { label: "Neural Labs",   href: "#" },
+      { label: "Simulations",   href: "#" },
+      { label: "Hardware",      href: "#" },
+      { label: "Protocols",     href: "#" },
+    ],
+  },
+  {
+    title: "Systems",
+    links: [
+      { label: "Access Control",  href: "#" },
+      { label: "Documentation",   href: "#" },
+      { label: "Status",          href: "#" },
+      { label: "Network",         href: "#" },
+    ],
+  },
+];
+
+const STATS = [
+  { value: "40+",  label: "World-class labs" },
+  { value: "2K+",  label: "Student patents" },
+  { value: "12",   label: "Global campuses" },
+  { value: "2040", label: "Est. future" },
+];
+
+const LAB_ICONS = [
+  { Icon: Atom,   code: "QCL" },
+  { Icon: Brain,  code: "NIS" },
+  { Icon: Cpu,    code: "RBY" },
+  { Icon: Radio,  code: "DSO" },
+];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  const footerLinks = [
-    {
-      title: "Platform",
-      links: [
-        { label: "Home", href: "/" },
-        { label: "About Us", href: "/about" },
-        { label: "Architecture", href: "/architecture" },
-        { label: "Terminals", href: "/terminals" },
-      ],
-    },
-    {
-      title: "Ecosystem",
-      links: [
-        { label: "Neural Labs", href: "#" },
-        { label: "Simulations", href: "#" },
-        { label: "Hardware", href: "#" },
-        { label: "Protocols", href: "#" },
-      ],
-    },
-    {
-      title: "Systems",
-      links: [
-        { label: "Access Control", href: "#" },
-        { label: "Documentation", href: "#" },
-        { label: "Status", href: "#" },
-        { label: "Network", href: "#" },
-      ],
-    },
-  ];
+  const year     = new Date().getFullYear();
+  const rootRef  = useRef<HTMLElement>(null);
+  const inView   = useInView(rootRef, { once: true, margin: "-60px" });
 
   return (
     <footer
+      ref={rootRef}
+      className="relative overflow-hidden"
       style={{
-        background: "#000000",
-        borderTop: "1px solid #222",
-        padding: "4rem 2rem 2rem",
-        color: "#888",
-        position: "relative",
+        background: "#000",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
+        color: "rgba(255,255,255,0.5)",
         zIndex: 10,
-        fontFamily: "monospace, sans-serif",
-        overflow: "hidden",
       }}
     >
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes spin3d {
-          0% { transform: rotateX(0deg) rotateY(0deg); }
+      {/* inject keyframes */}
+      <style>{`
+        @keyframes footerSpin {
+          0%   { transform: rotateX(0deg) rotateY(0deg); }
           100% { transform: rotateX(360deg) rotateY(360deg); }
         }
-        .hover-link { transition: all 0.3s ease; }
-        .hover-link:hover { color: #fff; transform: translateX(4px); }
-        .hover-link:hover .arrow-icon { opacity: 1 !important; transform: translate(2px, -2px); }
-        
-        .social-icon { transition: all 0.3s ease; }
-        .social-icon:hover { background: #fff !important; color: #000 !important; transform: translateY(-3px); box-shadow: 0 4px 12px rgba(255,255,255,0.2); }
-        
-        .input-focus:focus { outline: none; border-color: #fff !important; }
-        .btn-hover { transition: all 0.3s ease; }
-        .btn-hover:hover { background: #ccc !important; transform: scale(1.02); }
+      `}</style>
 
-        .cube-face {
-          position: absolute; width: 100%; height: 100%;
-          border: 1px solid rgba(255,255,255,0.4);
-          background: rgba(0,0,0,0.8);
-        }
-      `}} />
+      {/* Background canvas */}
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
+        <FooterCanvas />
+      </div>
 
-      <div style={{ maxWidth: "75rem", margin: "0 auto" }}>
+      {/* Dot-grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 1,
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+        }}
+      />
 
-        {/* Top Section: Brand & Newsletter */}
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignItems: "flex-start",   // ✅ fixed alignment
-          gap: "2rem",
-          marginBottom: "3rem",
-          paddingBottom: "2rem",
-          borderBottom: "1px solid #111"
-        }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "1rem", textDecoration: "none" }}>
-              <div style={{ perspective: "400px", width: "28px", height: "28px" }}>
-                <div style={{ width: "100%", height: "100%", position: "relative", transformStyle: "preserve-3d", animation: "spin3d 10s infinite linear" }}>
-                  <div className="cube-face" style={{ transform: "translateZ(14px)" }}></div>
-                  <div className="cube-face" style={{ transform: "rotateY(180deg) translateZ(14px)" }}></div>
-                  <div className="cube-face" style={{ transform: "rotateY(90deg) translateZ(14px)" }}></div>
-                  <div className="cube-face" style={{ transform: "rotateY(-90deg) translateZ(14px)" }}></div>
-                  <div className="cube-face" style={{ transform: "rotateX(90deg) translateZ(14px)" }}></div>
-                  <div className="cube-face" style={{ transform: "rotateX(-90deg) translateZ(14px)" }}></div>
+      {/* Top-edge vignette from page above */}
+      <div
+        className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
+        style={{ zIndex: 1, background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)" }}
+      />
+
+      <div className="relative" style={{ zIndex: 2 }}>
+        {/* Ticker */}
+        <FooterTicker />
+
+        {/* ── STATS BAR ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-4"
+          style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+        >
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className="py-8 px-6"
+              style={{ borderRight: i < STATS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : undefined }}
+            >
+              <StatCounter value={s.value} label={s.label} />
+            </div>
+          ))}
+        </motion.div>
+
+        {/* ── MAIN GRID ── */}
+        <div
+          className="grid"
+          style={{
+            gridTemplateColumns: "1fr auto",
+            borderBottom: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          {/* Left block — brand + newsletter + labs */}
+          <div
+            className="p-10 md:p-14 flex flex-col gap-10"
+            style={{ borderRight: "1px solid rgba(255,255,255,0.06)" }}
+          >
+            {/* Brand */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "14px", textDecoration: "none" }}>
+                <SpinningCube size={24} />
+                <span
+                  className="font-black tracking-tighter"
+                  style={{ fontSize: "clamp(18px, 2vw, 26px)", letterSpacing: "-0.04em", color: "#fff" }}
+                >
+                  SMART SCHOOL
+                  <span style={{ color: "rgba(255,255,255,0.2)", WebkitTextStroke: "1px rgba(255,255,255,0.25)", marginLeft: "0.35em" }}>
+                    2040
+                  </span>
+                </span>
+              </Link>
+              <p
+                className="mt-4 text-sm font-light leading-relaxed max-w-xs"
+                style={{ color: "rgba(255,255,255,0.32)" }}
+              >
+                The world's first fully adaptive, AI-native school. Eight next-generation labs. Zero gatekeeping. Built for the minds of tomorrow.
+              </p>
+            </motion.div>
+
+            {/* Newsletter */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-3"
+            >
+              <p className="text-[8px] tracking-[0.35em] uppercase" style={{ color: "rgba(255,255,255,0.28)" }}>
+                Broadcast channel
+              </p>
+              <div
+                className="flex gap-2"
+                style={{ height: "40px" }}
+              >
+                <input
+                  type="email"
+                  placeholder="Enter root email..."
+                  style={{
+                    flex: 1,
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    color: "#fff",
+                    padding: "0 14px",
+                    fontSize: "11px",
+                    borderRadius: "10px",
+                    outline: "none",
+                    fontFamily: "inherit",
+                    transition: "border-color 0.3s",
+                  }}
+                  onFocus={e => (e.target.style.borderColor = "rgba(255,255,255,0.4)")}
+                  onBlur={e  => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+                />
+                <SubmitBtn />
+              </div>
+            </motion.div>
+
+            {/* Lab icon strip */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="flex items-center gap-2 flex-wrap"
+            >
+              {LAB_ICONS.map(({ Icon, code }) => (
+                <div
+                  key={code}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+                  style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
+                >
+                  <Icon className="w-3 h-3" style={{ color: "rgba(255,255,255,0.45)" }} />
+                  <span className="text-[8px] tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>{code}</span>
+                </div>
+              ))}
+              <div
+                className="px-3 py-1.5 rounded-full text-[8px] tracking-widest uppercase"
+                style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", color: "rgba(255,255,255,0.25)" }}
+              >
+                +4 more
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right block — nav cols + contact */}
+          <div
+            className="grid"
+            style={{ gridTemplateColumns: "repeat(3, 1fr) auto" }}
+          >
+            {NAV_COLS.map((col, ci) => (
+              <motion.div
+                key={col.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.08 * ci, ease: [0.22, 1, 0.36, 1] }}
+                className="p-10 md:p-12 flex flex-col gap-6"
+                style={{ borderRight: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                <p className="text-[8px] tracking-[0.35em] uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  {col.title}
+                </p>
+                <ul className="flex flex-col gap-4 list-none p-0 m-0">
+                  {col.links.map(l => <NavLink key={l.label} {...l} />)}
+                </ul>
+              </motion.div>
+            ))}
+
+            {/* Contact card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="p-10 md:p-12 flex flex-col gap-6"
+              style={{ minWidth: "200px" }}
+            >
+              <p className="text-[8px] tracking-[0.35em] uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
+                Node Coordinates
+              </p>
+
+              <div className="flex flex-col gap-5 text-sm font-light" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "rgba(255,255,255,0.55)" }} />
+                  <span style={{ lineHeight: 1.6 }}>Tagore Int.<br />Vasant Vihar</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Terminal className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "rgba(255,255,255,0.55)" }} />
+                  <span style={{ fontFamily: "monospace", fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>
+                    ssh root@2040
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "rgba(255,255,255,0.55)" }} />
+                  <span style={{ fontSize: "11px" }}>pyrotech@tagoreint.com</span>
                 </div>
               </div>
-              <span style={{ fontSize: "1.25rem", fontWeight: 700, letterSpacing: "-0.05em", color: "#fff" }}>
-                SYSTEM_2040
-              </span>
-            </Link>
-          </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", width: "100%", maxWidth: "24rem" }}>
-            <span style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#fff" }}>Connect</span>
-            <div style={{ display: "flex", gap: "0.5rem" }}>
-              <input
-                type="email"
-                placeholder="Enter root email..."
-                className="input-focus"
-                style={{ flex: 1, background: "#0a0a0a", border: "1px solid #333", color: "#fff", padding: "0.6rem 1rem", fontSize: "0.8rem", borderRadius: "0.25rem", transition: "border-color 0.3s" }}
-              />
-              <button className="btn-hover" style={{ background: "#fff", color: "#000", border: "none", padding: "0 1rem", borderRadius: "0.25rem", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Send size={16} />
-              </button>
-            </div>
+              {/* Status chip */}
+              <div
+                className="flex items-center gap-2 px-3 py-2 rounded-xl self-start"
+                style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)" }}
+              >
+                <span
+                  className="rounded-full"
+                  style={{ width: 6, height: 6, background: "rgba(255,255,255,0.7)", flexShrink: 0, animation: "pulse 2s infinite" }}
+                />
+                <span className="text-[8px] tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  All systems nominal
+                </span>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Main grid (unchanged) */}
+        {/* ── BOTTOM BAR ── */}
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: "3rem",
-            marginBottom: "4rem",
-            alignItems: "start",
-          }}
+          className="flex flex-wrap items-center justify-between gap-4 px-10 md:px-14 py-5"
         >
-          <FooterLinkCol section={footerLinks[0]} />
-          <FooterLinkCol section={footerLinks[1]} />
-          <FooterLinkCol section={footerLinks[2]} />
-
-          <div
-            style={{
-              background: "#050505",
-              border: "1px solid #222",
-              borderRadius: "0.5rem",
-              padding: "1.25rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.25rem",
-              boxShadow: "inset 0 0 20px rgba(255,255,255,0.02)"
-            }}
-          >
-            <h4 style={{ fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: "#fff" }}>
-              Node Coordinates
-            </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", fontSize: "0.8rem" }}>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-                <MapPin size={16} style={{ color: "#fff", flexShrink: 0 }} />
-                <span>Tagore Int.<br />Vasant Viahr</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                <Terminal size={16} style={{ color: "#fff", flexShrink: 0 }} />
-                <span>CMD: ssh root@2040</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                <Mail size={16} style={{ color: "#fff", flexShrink: 0 }} />
-                <span>pyrotech@tagoreint.com</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar (unchanged) */}
-        <div
-          style={{
-            paddingTop: "2rem",
-            borderTop: "1px solid #111",
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "1.5rem",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-            <p style={{ fontSize: "0.75rem" }}>
-              © {currentYear} <span style={{ color: "#fff", fontWeight: 600 }}>SYSTEM_2040</span>. END OF FILE.
+          {/* Left — copyright */}
+          <div className="flex items-center gap-6">
+            <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.25)" }}>
+              © {year} <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 600 }}>Smart School 2040</span> · End of file.
             </p>
-            <div style={{ display: "flex", gap: "1.5rem", fontSize: "0.65rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              <Link href="#" className="hover-link" style={{ color: "#666", textDecoration: "none" }}>Privacy</Link>
-              <Link href="#" className="hover-link" style={{ color: "#666", textDecoration: "none" }}>Terms</Link>
+            <div className="hidden md:flex items-center gap-5">
+              {["Privacy", "Terms", "Ethics Board"].map(l => (
+                <Link
+                  key={l}
+                  href="#"
+                  className="text-[9px] tracking-widest uppercase transition-colors duration-200"
+                  style={{ color: "rgba(255,255,255,0.22)", textDecoration: "none" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.22)")}
+                >
+                  {l}
+                </Link>
+              ))}
             </div>
           </div>
 
-          <div style={{ display: "flex", gap: "0.75rem" }}>
-            <SocialIcon icon={<X size={16} />} href="#" />
-            <SocialIcon icon={<CustomGithubIcon />} href="#" />
-            <SocialIcon icon={<CustomLinkedinIcon />} href="#" />
-            <SocialIcon icon={<Globe size={16} />} href="#" />
+          {/* Right — socials */}
+          <div className="flex items-center gap-2">
+            <SocialBtn href="#" label="X / Twitter" icon={<X size={14} />} />
+            <SocialBtn href="#" label="GitHub" icon={<GithubIcon />} />
+            <SocialBtn href="#" label="LinkedIn" icon={<LinkedinIcon />} />
+            <SocialBtn href="#" label="Website" icon={<Globe size={14} />} />
           </div>
         </div>
       </div>
@@ -199,66 +569,22 @@ export default function Footer() {
   );
 }
 
-function FooterLinkCol({ section }: { section: { title: string; links: { label: string; href: string }[] } }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-      <h4 style={{ fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: "#fff" }}>
-        {section.title}
-      </h4>
-      <ul style={{ display: "flex", flexDirection: "column", gap: "0.8rem", listStyle: "none", padding: 0, margin: 0 }}>
-        {section.links.map((link) => (
-          <li key={link.label}>
-            <Link
-              href={link.href}
-              className="hover-link"
-              style={{ fontSize: "0.85rem", color: "#888", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}
-            >
-              {link.label}
-              <ArrowUpRight className="arrow-icon" size={12} style={{ opacity: 0, transition: "all 0.3s ease" }} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+// ─── SVG ICONS ────────────────────────────────────────────────────────────────
 
-function SocialIcon({ icon, href }: { icon: React.ReactNode; href: string }) {
+function GithubIcon() {
   return (
-    <Link
-      href={href}
-      className="social-icon"
-      style={{
-        padding: "0.5rem",
-        borderRadius: "0.25rem",
-        background: "#0a0a0a",
-        border: "1px solid #333",
-        color: "#888",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textDecoration: "none",
-      }}
-    >
-      {icon}
-    </Link>
-  );
-}
-
-function CustomGithubIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 9 18v4"></path>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 9 18v4" />
     </svg>
   );
 }
 
-function CustomLinkedinIcon() {
+function LinkedinIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-      <rect x="2" y="9" width="4" height="12"></rect>
-      <circle cx="4" cy="4" r="2"></circle>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   );
 }
