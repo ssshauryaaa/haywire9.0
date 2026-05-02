@@ -8,7 +8,8 @@ const links = [
   { label: "Home",         href: "/" },
   { label: "About Us",     href: "/about" },
   { label: "How It Works", href: "/how-it-works" },
-  { label: "Features",   href: "/features" },
+  { label: "Features",     href: "/features" },
+  { label: "Contact",      href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -27,7 +28,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => { setOpen(false); }, [pathname]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -103,7 +103,7 @@ export default function Navbar() {
               ? "0 8px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.14)"
               : "0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1)",
             transition: "background 0.4s ease, box-shadow 0.4s ease",
-            maxWidth: "860px",
+            maxWidth: "960px",
             width: "100%",
           }}
         >

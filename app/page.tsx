@@ -156,7 +156,7 @@ function MarqueeStatement() {
   );
 }
 
-// ─── SECTION 2: DAY IN THE LIFE (horizontal scroll cards) ────────────────────
+// ─── SECTION 2: DAY IN THE LIFE (horizontal drag scroll cards) ────────────────
 
 const days = [
   {
@@ -199,7 +199,32 @@ const days = [
 
 function DayInTheLifeSection() {
   const ref = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    isDragging.current = true;
+    startX.current = e.pageX - (scrollRef.current?.offsetLeft ?? 0);
+    scrollLeftStart.current = scrollRef.current?.scrollLeft ?? 0;
+    if (scrollRef.current) scrollRef.current.style.cursor = "grabbing";
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = x - startX.current;
+    scrollRef.current.scrollLeft = scrollLeftStart.current - walk;
+  };
+
+  const stopDrag = () => {
+    isDragging.current = false;
+    if (scrollRef.current) scrollRef.current.style.cursor = "grab";
+  };
 
   return (
     <section ref={ref} style={{ padding: "120px 0" }}>
@@ -258,10 +283,18 @@ function DayInTheLifeSection() {
       </div>
 
       <div
+        ref={scrollRef}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={stopDrag}
+        onMouseLeave={stopDrag}
         style={{
           overflowX: "auto",
           paddingBottom: "20px",
           scrollbarWidth: "none",
+          cursor: "grab",
+          userSelect: "none",
+          WebkitUserSelect: "none",
         }}
       >
         <div
@@ -513,7 +546,7 @@ function ComparisonSection() {
   );
 }
 
-// ─── SECTION 4: GLOBE — live student world ────────────────────────────────────
+// ─── SECTION 4: GLOBE ────────────────────────────────────────────────────────
 
 function WorldCanvas() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -836,7 +869,7 @@ function GlobalSection() {
   );
 }
 
-// ─── SECTION 5: PRINCIPLES — large typographic rows ──────────────────────────
+// ─── SECTION 5: PRINCIPLES ────────────────────────────────────────────────────
 
 const principles = [
   {
@@ -1259,7 +1292,104 @@ function CTASection() {
   );
 }
 
-// ─── HERO (original — untouched, bg matched to black) ────────────────────────
+// ─── SPLINE LOADER ────────────────────────────────────────────────────────────
+
+function LoadingText() {
+  const [dots, setDots] = useState("");
+  useEffect(() => {
+    const t = setInterval(
+      () => setDots((d) => (d.length >= 3 ? "" : d + ".")),
+      420,
+    );
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "6px",
+      }}
+    >
+      <span
+        style={{
+          fontSize: "9px",
+          letterSpacing: "0.38em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.5)",
+          fontWeight: 600,
+          minWidth: "160px",
+          textAlign: "center",
+        }}
+      >
+        Loading 3D Model{dots}
+      </span>
+      <span
+        style={{
+          fontSize: "7px",
+          letterSpacing: "0.25em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.18)",
+        }}
+      >
+        Smart School 2040
+      </span>
+    </div>
+  );
+}
+
+function SplineEmbed() {
+  const [loaded, setLoaded] = useState(false);
+  const [shouldMount, setShouldMount] = useState(false);
+
+  useEffect(() => {
+    // Wait until page is idle before mounting the iframe
+    const id = requestIdleCallback
+      ? requestIdleCallback(() => setShouldMount(true), { timeout: 2000 })
+      : setTimeout(() => setShouldMount(true), 1000);
+    return () => {
+      requestIdleCallback ? cancelIdleCallback(id as number) : clearTimeout(id as number);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!shouldMount) return;
+    const timer = setTimeout(() => setLoaded(true), 4000);
+    return () => clearTimeout(timer);
+  }, [shouldMount]);
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%", minHeight: "480px" }}>
+      {/* Loader */}
+      <motion.div
+        animate={{ opacity: loaded ? 0 : 1 }}
+        transition={{ duration: 0.8 }}
+        style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "20px", pointerEvents: loaded ? "none" : "auto", background: "#0A0A0A" }}
+      >
+        <div style={{ position: "relative", width: "48px", height: "48px" }}>
+          <motion.div animate={{ rotate: 360 }} transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }} style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.08)", borderTopColor: "rgba(255,255,255,0.7)" }} />
+          <motion.div animate={{ rotate: -360 }} transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }} style={{ position: "absolute", inset: "8px", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.04)", borderBottomColor: "rgba(255,255,255,0.35)" }} />
+        </div>
+        <LoadingText />
+      </motion.div>
+
+      {/* Only render iframe after page is idle */}
+      {shouldMount && (
+        <iframe
+          src="https://my.spline.design/hanastarterfile-WE78OsCR6rUGkiUggYdsOkoW-jD9/"
+          frameBorder="0"
+          allow="autoplay; fullscreen; vr"
+          onLoad={() => setLoaded(true)}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none", display: "block", opacity: loaded ? 1 : 0, transition: "opacity 0.8s ease" }}
+          title="Smart School 2040"
+        />
+      )}
+    </div>
+  );
+}
+
+// ─── HERO ─────────────────────────────────────────────────────────────────────
 
 function HeroSection() {
   const x = useMotionValue(0),
@@ -1286,7 +1416,7 @@ function HeroSection() {
         overflow: "hidden",
       }}
     >
-      {/* Grid — matches rest of page */}
+      {/* Grid */}
       <div
         style={{
           position: "absolute",
@@ -1310,7 +1440,7 @@ function HeroSection() {
             "radial-gradient(ellipse at center, transparent 20%, #0A0A0A 90%)",
         }}
       />
-      {/* Mouse glow inside hero */}
+      {/* Mouse glow */}
       <motion.div
         style={{
           position: "absolute",
@@ -1335,32 +1465,20 @@ function HeroSection() {
         />
       </motion.div>
 
-      {/* Spline */}
+      {/* Spline embed with loader */}
       <div
         style={{
           position: "absolute",
-          inset: 0,
+          top: "10%",
+          left: "0",
+          width: "80%",
+          height: "80%",
           zIndex: 10,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
           pointerEvents: "auto",
-          transform: "translate(-12%, 5%)",
+          transform: "translate(-1%, 12%)",
         }}
       >
-        <iframe
-          src="https://my.spline.design/hanastarterfile-WE78OsCR6rUGkiUggYdsOkoW-jD9/"
-          frameBorder="0"
-          allow="autoplay; fullscreen; vr"
-          style={{
-            width: "80%",
-            height: "80%",
-            border: "none",
-            display: "block",
-            margin: "auto",
-          }}
-          title="Smart School 2040"
-        />
+        <SplineEmbed />
       </div>
 
       {/* Text overlay — right side */}
