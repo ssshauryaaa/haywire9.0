@@ -9,6 +9,9 @@ import {
   ChevronRight, ArrowRight, Plus, Minus, Sparkles, Eye,
   MessageSquare, Wifi, BarChart3, Shield,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
@@ -682,6 +685,8 @@ function TimelineNav({ active, onSelect }: { active: number; onSelect: (i: numbe
 // ─── MAIN COMPONENT ────────────────────────────────────────────────────────────
 
 export default function HowItWorks() {
+  const router = useRouter()
+
   const { scrollY } = useScroll();
   const heroY       = useTransform(scrollY, [0, 700], [0, -100]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
@@ -913,10 +918,11 @@ export default function HowItWorks() {
               Every system described here is live. Every lab exists. Every student who walks through the doors of Smart School 2040 becomes part of the most ambitious educational experiment on Earth.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <button className="px-12 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.22em] rounded-full transition-all duration-300 hover:scale-105 hover:bg-gray-100">
-                Apply for 2049 →
+              <button onClick={() => router.push("/contact")} className="px-12 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.22em] rounded-full transition-all duration-300 hover:scale-105 hover:bg-gray-100">
+                contact us 
               </button>
               <button
+                onClick={() => router.push("/facilities")}
                 className="px-12 py-4 border text-[10px] font-bold uppercase tracking-[0.22em] rounded-full transition-all duration-300"
                 style={{ borderColor: "rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.45)" }}
               >

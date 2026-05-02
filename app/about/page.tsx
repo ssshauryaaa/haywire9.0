@@ -1330,6 +1330,7 @@ export default function AboutPage() {
               Applications open for Class of 2049.
             </p>
             <button
+            onClick={() => router.push("/contact")}
               className="px-14 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.25em] rounded-full border-none transition-all duration-300"
               onMouseEnter={(e) => {
                 const el = e.target as HTMLElement;
@@ -1342,7 +1343,7 @@ export default function AboutPage() {
                 el.style.background = "#fff";
               }}
             >
-              Join Smart School 2040
+              Contact us
             </button>
           </motion.section>
         </div>
