@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
@@ -425,7 +426,7 @@ function FacilityCard({ f, index }: { f: typeof facilities[0]; index: number }) 
       ref={ref}
       initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: (index % 2) * 0.1 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: (index % 2) * 0.1 }}
       className="group relative border border-white/8 rounded-3xl overflow-hidden cursor-pointer"
       style={{ background: "rgba(255,255,255,0.015)" }}
       onClick={() => setExpanded(!expanded)}
@@ -687,9 +688,16 @@ export default function FacilitiesPage() {
   const statsInView   = useInView(statsRef, { once: true, margin: "-80px" });
 
   const fadeUp = {
-    hidden:  { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
-  };
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1] as const,   // ✅ add as const
+    },
+  },
+};
 
   const stagger = {
     hidden:  {},

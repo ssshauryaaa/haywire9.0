@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -566,24 +567,24 @@ function FacilityPanel({
   const lines = facility.name.split("\n");
 
   const panelVariants = {
-    enter: (dir: number) => ({
-      opacity: 0,
-      y: dir > 0 ? 60 : -60,
-      scale: 0.97,
-    }),
-    center: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
-    },
-    exit: (dir: number) => ({
-      opacity: 0,
-      y: dir > 0 ? -60 : 60,
-      scale: 0.97,
-      transition: { duration: 0.5, ease: [0.4, 0, 1, 1] },
-    }),
-  };
+  enter: (dir: number) => ({
+    opacity: 0,
+    y: dir > 0 ? 60 : -60,
+    scale: 0.97,
+  }),
+  center: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },  // ✅
+  },
+  exit: (dir: number) => ({
+    opacity: 0,
+    y: dir > 0 ? -60 : 60,
+    scale: 0.97,
+    transition: { duration: 0.5, ease: [0.4, 0, 1, 1] as const },        // ✅
+  }),
+};
 
   const textStagger = {
     center: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } },
@@ -591,7 +592,7 @@ function FacilityPanel({
 
   const textItem = {
     enter:  { opacity: 0, y: 28, skewY: 1.5 },
-    center: { opacity: 1, y: 0, skewY: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+    center: { opacity: 1, y: 0, skewY: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const } },
     exit:   { opacity: 0, y: -20 },
   };
 

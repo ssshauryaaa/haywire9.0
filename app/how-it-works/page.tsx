@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
@@ -486,7 +487,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
       ref={ref}
       initial={{ opacity: 0, y: 70 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.05 }}
       className="relative border rounded-3xl overflow-hidden"
       style={{ borderColor: "rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.015)" }}
     >
@@ -694,7 +695,7 @@ export default function HowItWorks() {
 
   const fadeUp = {
     hidden:  { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
   };
 
   return (
