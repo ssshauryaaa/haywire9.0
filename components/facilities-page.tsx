@@ -24,8 +24,8 @@ const FACILITIES = [
     name: "Quantum\nComputing Lab",
     short: "Quantum",
     tagline: "Compute at the edge of physics",
-    body: "The only school on Earth with its own IBM Quantum processor. 127 qubits. Real algorithms, not simulations. Students run error-corrected circuits and contribute to active research — no queue, no gatekeeping.",
-    numbers: [{ v: "127", u: "qubits" }, { v: "99.9%", u: "fidelity" }, { v: "24/7", u: "access" }],
+    body: "The only school in the world with its own advanced quantum computer. Students run real programs, not just practice tests. You can join active research projects anytime, with no waiting in line.",
+    numbers: [{ v: "127", u: "qubits" }, { v: "99.9%", u: "accuracy" }, { v: "24/7", u: "access" }],
     icon: Atom,
     accent: "rgba(255,255,255,0.9)",
     scene: "quantum",
@@ -37,8 +37,8 @@ const FACILITIES = [
     name: "Neural Interface\nStudio",
     short: "Neural",
     tagline: "Where mind meets machine",
-    body: "256-channel EEG rigs, haptic exoskeletons, and BCI development kits. Students design and test direct neural input systems in a fully equipped neurotechnology suite with sub-millisecond latency.",
-    numbers: [{ v: "256ch", u: "EEG" }, { v: "<1ms", u: "latency" }, { v: "AI", u: "calibration" }],
+    body: "Equipped with advanced brain-wave sensors and wearable feedback suits. Students design and test systems that connect the human mind directly to computers, all with zero delay.",
+    numbers: [{ v: "256", u: "brain sensors" }, { v: "Zero", u: "delay" }, { v: "Smart", u: "setup" }],
     icon: Brain,
     accent: "rgba(255,255,255,0.9)",
     scene: "neural",
@@ -50,8 +50,8 @@ const FACILITIES = [
     name: "Holographic\nArena",
     short: "Holographic",
     tagline: "Reality is a canvas",
-    body: "A 360° volumetric display chamber spanning 40 metres. Projects photorealistic holograms at 1:1 scale — from molecular structures to architectural walkthroughs. No headsets. No compromise.",
-    numbers: [{ v: "40m", u: "diameter" }, { v: "32K", u: "resolution" }, { v: "120fps", u: "refresh" }],
+    body: "A large 360-degree 3D room spanning 40 meters. It shows lifelike, full-size holograms, from tiny molecules to large buildings. You do not even need to wear a VR headset.",
+    numbers: [{ v: "40m", u: "wide room" }, { v: "32K", u: "resolution" }, { v: "120fps", u: "smooth motion" }],
     icon: Eye,
     accent: "rgba(255,255,255,0.9)",
     scene: "holo",
@@ -63,8 +63,8 @@ const FACILITIES = [
     name: "Robotics\nBay",
     short: "Robotics",
     tagline: "Build what doesn't exist yet",
-    body: "20+ robotic arms, drone test corridors, and a live swarm simulation environment. Students ship real hardware in semester one. CNC mills, multi-material 3D forges, and an embedded AI design co-pilot.",
-    numbers: [{ v: "20+", u: "robotic arms" }, { v: "S1", u: "hardware ship" }, { v: "AI", u: "co-pilot" }],
+    body: "A massive workshop with over 20 robotic arms, drone flight paths, and a testing area for robot groups. Students build and launch real, working hardware in their very first semester.",
+    numbers: [{ v: "20+", u: "robotic arms" }, { v: "Term 1", u: "real builds" }, { v: "AI", u: "smart helper" }],
     icon: Cpu,
     accent: "rgba(255,255,255,0.9)",
     scene: "robotics",
@@ -76,8 +76,8 @@ const FACILITIES = [
     name: "Deep Space\nObservatory",
     short: "Space",
     tagline: "Eyes on the universe",
-    body: "A rooftop telescope array paired with real-time satellite feeds and a radio telescope dish. Students contribute data to live astrophysics research programs worldwide. 2m primary mirror. No booking required.",
-    numbers: [{ v: "2m", u: "primary mirror" }, { v: "SAT", u: "uplink" }, { v: "Live", u: "data pipeline" }],
+    body: "A powerful rooftop telescope connected to live satellite feeds. Students collect real space data and share it with space research programs around the world. It is always open for you to use.",
+    numbers: [{ v: "2m", u: "main mirror" }, { v: "Live", u: "satellites" }, { v: "Global", u: "data sharing" }],
     icon: Radio,
     accent: "rgba(255,255,255,0.9)",
     scene: "space",
@@ -89,8 +89,8 @@ const FACILITIES = [
     name: "BioSynth\nLab",
     short: "BioSynth",
     tagline: "Engineer life itself",
-    body: "BSL-2 certified synthetic biology with CRISPR editing stations, protein folding workstations, and live culture chambers. Every experiment guided by AI biosafety protocols that adapt in real time.",
-    numbers: [{ v: "BSL-2", u: "certified" }, { v: "CRISPR", u: "editing" }, { v: "AI", u: "biosafety" }],
+    body: "A certified safe biology lab equipped with advanced gene-editing tools and live testing chambers. Smart AI safety systems carefully guide students through every single experiment.",
+    numbers: [{ v: "Safe", u: "certified lab" }, { v: "Gene", u: "editing tools" }, { v: "AI", u: "safety guides" }],
     icon: Microscope,
     accent: "rgba(255,255,255,0.9)",
     scene: "bio",
@@ -101,9 +101,9 @@ const FACILITIES = [
     code: "CGA-07",
     name: "CyberGrid\nArena",
     short: "CyberGrid",
-    tagline: "Red team. Blue team. Real stakes.",
-    body: "An air-gapped cyber range with live attack-defense simulations. Real-world threat scenarios — infrastructure attacks, zero-days, adversarial AI. CTF leaderboard updated in real time across all campuses.",
-    numbers: [{ v: "Air", u: "gapped" }, { v: "Live", u: "red teams" }, { v: "CTF", u: "leaderboard" }],
+    tagline: "Practice with real stakes",
+    body: "A secure digital practice space for live defense simulations. Students learn to protect networks against real-world threats and smart AI attacks. Track your progress on a live global leaderboard.",
+    numbers: [{ v: "Secure", u: "private network" }, { v: "Live", u: "practice attacks" }, { v: "Global", u: "leaderboard" }],
     icon: Shield,
     accent: "rgba(255,255,255,0.9)",
     scene: "cyber",
@@ -115,8 +115,8 @@ const FACILITIES = [
     name: "Zero-G\nDesign Studio",
     short: "Zero-G",
     tagline: "Design for the void",
-    body: "Microgravity simulation, parabolic flight training modules, and satellite hardware testbeds. Students design systems for orbital and lunar deployment in partnership with ESA and three private space agencies.",
-    numbers: [{ v: "μg", u: "simulation" }, { v: "ESA", u: "partnership" }, { v: "Lunar", u: "certified" }],
+    body: "A special room that simulates floating in space, complete with flight training and satellite testing. Students design tools meant to be used in Earth's orbit and on the moon.",
+    numbers: [{ v: "Zero-G", u: "simulator" }, { v: "Space", u: "agency partners" }, { v: "Moon", u: "ready tools" }],
     icon: Rocket,
     accent: "rgba(255,255,255,0.9)",
     scene: "zerog",
@@ -135,8 +135,8 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
       const m = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.5 });
       const mesh = new THREE.Mesh(g, m);
       const theta = (i / 24) * Math.PI * 2;
-      const phi   = Math.acos(2 * (i / 24) - 1);
-      const r     = 1.2 + Math.random() * 0.8;
+      const phi = Math.acos(2 * (i / 24) - 1);
+      const r = 1.2 + Math.random() * 0.8;
       mesh.position.set(r * Math.sin(phi) * Math.cos(theta), r * Math.sin(phi) * Math.sin(theta), r * Math.cos(phi));
       mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
       add(mesh);
@@ -160,7 +160,7 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
     // Dense node web
     const nodes: THREE.Vector3[] = [];
     for (let i = 0; i < 55; i++) {
-      const v = new THREE.Vector3((Math.random()-0.5)*4, (Math.random()-0.5)*3, (Math.random()-0.5)*2);
+      const v = new THREE.Vector3((Math.random() - 0.5) * 4, (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 2);
       nodes.push(v);
       const sg = new THREE.SphereGeometry(0.04, 5, 5);
       const sm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
@@ -219,7 +219,7 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   else if (id === "space") {
     // Stars
     const sp = new Float32Array(400 * 3);
-    for (let i = 0; i < 400 * 3; i++) sp[i] = (Math.random()-0.5)*16;
+    for (let i = 0; i < 400 * 3; i++) sp[i] = (Math.random() - 0.5) * 16;
     const sg = new THREE.BufferGeometry(); sg.setAttribute("position", new THREE.BufferAttribute(sp, 3));
     add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xffffff, size: 0.03, transparent: true, opacity: 0.55 })));
     // Planet wireframe
@@ -260,7 +260,7 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
       const g = new THREE.RingGeometry(0.22, 0.25, 6);
       const m = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.08 + Math.random() * 0.18, side: THREE.DoubleSide });
       const mesh = new THREE.Mesh(g, m);
-      mesh.position.set(i * 0.56 + (j % 2) * 0.28, j * 0.50, (Math.random()-0.5)*0.4);
+      mesh.position.set(i * 0.56 + (j % 2) * 0.28, j * 0.50, (Math.random() - 0.5) * 0.4);
       add(mesh);
     }
     // Binary rain columns (vertical lines)
@@ -276,18 +276,18 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
     // Floating debris parts
     const parts: THREE.Mesh[] = [];
     const geos = () => [
-      new THREE.BoxGeometry(0.15+Math.random()*0.2, 0.15+Math.random()*0.2, 0.05),
+      new THREE.BoxGeometry(0.15 + Math.random() * 0.2, 0.15 + Math.random() * 0.2, 0.05),
       new THREE.CylinderGeometry(0.06, 0.06, 0.35, 6),
       new THREE.OctahedronGeometry(0.12),
       new THREE.TetrahedronGeometry(0.14, 0),
     ];
     for (let i = 0; i < 26; i++) {
       const gList = geos();
-      const g = gList[Math.floor(Math.random()*gList.length)];
-      const m = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: Math.random()>0.4, transparent: true, opacity: 0.35+Math.random()*0.45 });
+      const g = gList[Math.floor(Math.random() * gList.length)];
+      const m = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: Math.random() > 0.4, transparent: true, opacity: 0.35 + Math.random() * 0.45 });
       const mesh = new THREE.Mesh(g, m);
-      mesh.position.set((Math.random()-0.5)*5, (Math.random()-0.5)*4, (Math.random()-0.5)*2);
-      mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
+      mesh.position.set((Math.random() - 0.5) * 5, (Math.random() - 0.5) * 4, (Math.random() - 0.5) * 2);
+      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
       add(mesh);
       parts.push(mesh);
     }
@@ -306,7 +306,7 @@ function animateScene(id: string, group: THREE.Group, frame: number, mX: number,
     group.rotation.y += 0.003;
     group.children.forEach((c, i) => {
       if (c instanceof THREE.Mesh) {
-        (c.material as THREE.MeshBasicMaterial).opacity = 0.4 + Math.abs(Math.sin(frame*0.03+i*0.35))*0.5;
+        (c.material as THREE.MeshBasicMaterial).opacity = 0.4 + Math.abs(Math.sin(frame * 0.03 + i * 0.35)) * 0.5;
       }
     });
   }
@@ -320,7 +320,7 @@ function animateScene(id: string, group: THREE.Group, frame: number, mX: number,
     if (arm) {
       arm.rotation.y += 0.005;
       const joints = (arm as any).__joints as THREE.Mesh[];
-      joints?.forEach((j, i) => { j.scale.setScalar(0.9 + Math.abs(Math.sin(frame*0.04+i))*0.3); });
+      joints?.forEach((j, i) => { j.scale.setScalar(0.9 + Math.abs(Math.sin(frame * 0.04 + i)) * 0.3); });
     }
   }
   if (id === "space") {
@@ -331,17 +331,17 @@ function animateScene(id: string, group: THREE.Group, frame: number, mX: number,
   if (id === "cyber") {
     group.children.forEach((c, i) => {
       if (c instanceof THREE.Mesh) {
-        (c.material as THREE.MeshBasicMaterial).opacity = 0.05 + Math.abs(Math.sin(frame*0.04+i*0.35))*0.22;
+        (c.material as THREE.MeshBasicMaterial).opacity = 0.05 + Math.abs(Math.sin(frame * 0.04 + i * 0.35)) * 0.22;
       }
     });
   }
   if (id === "zerog") {
     const parts = (group as any).__parts as THREE.Mesh[];
     parts?.forEach((p, i) => {
-      p.position.y += Math.sin(frame*0.012+i)*0.003;
-      p.position.x += Math.cos(frame*0.01+i*0.7)*0.002;
-      p.rotation.x += 0.007+i*0.001;
-      p.rotation.y += 0.005+i*0.0008;
+      p.position.y += Math.sin(frame * 0.012 + i) * 0.003;
+      p.position.x += Math.cos(frame * 0.01 + i * 0.7) * 0.002;
+      p.rotation.x += 0.007 + i * 0.001;
+      p.rotation.y += 0.005 + i * 0.0008;
     });
   }
 }
@@ -351,12 +351,12 @@ function animateScene(id: string, group: THREE.Group, frame: number, mX: number,
 function FacilityCanvas({ facilityId, active }: { facilityId: string; active: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const sceneRef    = useRef<THREE.Scene | null>(null);
-  const groupRef    = useRef<THREE.Group | null>(null);
-  const cameraRef   = useRef<THREE.PerspectiveCamera | null>(null);
-  const mXRef       = useRef(0), mYRef = useRef(0);
-  const frameRef    = useRef(0);
-  const animRef     = useRef<number>(0);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const groupRef = useRef<THREE.Group | null>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const mXRef = useRef(0), mYRef = useRef(0);
+  const frameRef = useRef(0);
+  const animRef = useRef<number>(0);
 
   useEffect(() => {
     const el = ref.current; if (!el) return;
@@ -369,10 +369,10 @@ function FacilityCanvas({ facilityId, active }: { facilityId: string; active: bo
     el.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    const scene  = new THREE.Scene();
+    const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 300);
     camera.position.set(0, 0, 5);
-    sceneRef.current  = scene;
+    sceneRef.current = scene;
     cameraRef.current = camera;
 
     const group = new THREE.Group();
@@ -383,8 +383,8 @@ function FacilityCanvas({ facilityId, active }: { facilityId: string; active: bo
 
     const onMM = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
-      mXRef.current = ((e.clientX - r.left) / r.width  - 0.5) * 2;
-      mYRef.current = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      mXRef.current = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      mYRef.current = ((e.clientY - r.top) / r.height - 0.5) * 2;
     };
     el.addEventListener("mousemove", onMM);
 
@@ -567,33 +567,33 @@ function FacilityPanel({
   const lines = facility.name.split("\n");
 
   const panelVariants = {
-  enter: (dir: number) => ({
-    opacity: 0,
-    y: dir > 0 ? 60 : -60,
-    scale: 0.97,
-  }),
-  center: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },  // ✅
-  },
-  exit: (dir: number) => ({
-    opacity: 0,
-    y: dir > 0 ? -60 : 60,
-    scale: 0.97,
-    transition: { duration: 0.5, ease: [0.4, 0, 1, 1] as const },        // ✅
-  }),
-};
+    enter: (dir: number) => ({
+      opacity: 0,
+      y: dir > 0 ? 60 : -60,
+      scale: 0.97,
+    }),
+    center: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },  // ✅
+    },
+    exit: (dir: number) => ({
+      opacity: 0,
+      y: dir > 0 ? -60 : 60,
+      scale: 0.97,
+      transition: { duration: 0.5, ease: [0.4, 0, 1, 1] as const },        // ✅
+    }),
+  };
 
   const textStagger = {
     center: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } },
   };
 
   const textItem = {
-    enter:  { opacity: 0, y: 28, skewY: 1.5 },
+    enter: { opacity: 0, y: 28, skewY: 1.5 },
     center: { opacity: 1, y: 0, skewY: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const } },
-    exit:   { opacity: 0, y: -20 },
+    exit: { opacity: 0, y: -20 },
   };
 
   return (
@@ -811,11 +811,11 @@ function GridOverview({
 // ─── MAIN EXPERIENCE ──────────────────────────────────────────────────────────
 
 export default function FacilitiesExperience() {
-  const [current, setCurrent]   = useState(0);
+  const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const [showGrid, setShowGrid] = useState(false);
   const lastScroll = useRef(0);
-  const throttle   = useRef(false);
+  const throttle = useRef(false);
 
   const goTo = useCallback((i: number) => {
     setDirection(i > current ? 1 : -1);
@@ -842,7 +842,7 @@ export default function FacilitiesExperience() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowDown" || e.key === "ArrowRight") next();
-      if (e.key === "ArrowUp"   || e.key === "ArrowLeft")  prev();
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") prev();
       if (e.key === "Escape") setShowGrid(false);
       if (e.key === "g") setShowGrid(v => !v);
     };
@@ -853,7 +853,7 @@ export default function FacilitiesExperience() {
   // Touch
   const touchStart = useRef(0);
   const onTouchStart = (e: React.TouchEvent) => { touchStart.current = e.touches[0].clientY; };
-  const onTouchEnd   = (e: React.TouchEvent) => {
+  const onTouchEnd = (e: React.TouchEvent) => {
     const delta = touchStart.current - e.changedTouches[0].clientY;
     if (Math.abs(delta) > 40) { if (delta > 0) next(); else prev(); }
   };

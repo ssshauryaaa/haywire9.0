@@ -67,89 +67,89 @@ const stats = [
 const pillars = [
   {
     num: "01",
-    title: "AI-Driven Personalisation",
+    title: "Adaptive AI-Driven Personalization",
     icon: Hexagon,
-    desc: "Adaptive learning paths tailored to each student's pace, strengths, and goals.",
+    desc: "Advanced AI systems dynamically design hyper-personalized learning pathways tailored to each student's pace and goals.",
     longDesc:
-      "Every student receives a unique curriculum. Our AI tutors adjust difficulty in real time, recommend resources, and simulate one-on-one coaching sessions 24/7.",
+      "Education is no longer one-size-fits-all. Our advanced AI tutoring systems dynamically design hyper-personalized learning pathways for every student. By adjusting complexity in real-time, curating optimal multimedia resources, and providing 24/7 simulated one-on-one coaching, we ensure that every learner achieves mastery at their own ideal pace.",
   },
   {
     num: "02",
-    title: "Robotics Integration",
+    title: "Seamless Robotics Integration",
     icon: Cog,
-    desc: "Hands-on engineering labs where students build and program real-world systems.",
+    desc: "Hands-on engineering environments where students build, program, and collaborate with autonomous systems.",
     longDesc:
-      "From drone swarms to humanoid assistants, students collaborate with robots daily. The robotics minor is mandatory for all freshmen, bridging theory with real-world practice.",
+      "Theoretical knowledge meets physical execution. Students collaborate daily with advanced humanoid assistants and autonomous systems, integrating automation into routine problem-solving. To bridge the gap between conceptual design and real-world application, our foundational robotics curriculum is mandatory for all first-year students.",
   },
   {
     num: "03",
-    title: "Global Classrooms",
+    title: "Borderless Global Classrooms",
     icon: Globe,
-    desc: "Live sessions with peers and mentors from 60+ countries across every time zone.",
+    desc: "Globally interconnected spaces featuring high-fidelity holographic telepresence and instantaneous real-time translation.",
     longDesc:
-      "Holographic presence and real-time translation break down borders. Join a debate with Tokyo at 3 AM — recorded, reviewed, and scored by AI for deep reflection.",
+      "Geography is no longer a limitation to academic collaboration. Through high-fidelity holographic telepresence and instantaneous, real-time translation, our learning spaces are globally interconnected. Students can seamlessly engage in cross-continental debates or joint projects—all of which are recorded, transcribed, and analytically scored by AI for deep reflection.",
   },
   {
     num: "04",
-    title: "Research-First Culture",
+    title: "Applied Innovation & Research",
     icon: Microscope,
-    desc: "Every student ships a publishable project before graduation.",
+    desc: "A culture prioritizing creation over memorization, ensuring every student develops a tangible prototype or startup.",
     longDesc:
-      "Not just a thesis — a real prototype, paper, or startup. Our patent office on campus has filed over 2,000 student-led inventions since 2040.",
+      "We prioritize creation over memorization. The culmination of a student's journey here is not a standard written thesis, but a tangible prototype, a published peer-reviewed paper, or a launched startup. Supported by our dedicated on-campus intellectual property clinic, we actively transform academic inquiries into real-world impact.",
   },
 ];
 
 const milestones = [
   {
     year: "2038",
-    title: "Concept & Seed",
-    desc: "Blueprint approved by global ed-tech consortium.",
+    title: "Strategic Foundation",
+    desc: "The foundational blueprint is officially ratified by a leading consortium of global education technology pioneers.",
   },
   {
     year: "2040",
-    title: "First Cohort",
-    desc: "500 students, 12 countries, all online-first.",
+    title: "Inaugural Global Cohort",
+    desc: "Welcomed 500 pioneering students from 12 nations into our revolutionary, borderless digital-first learning ecosystem.",
   },
   {
     year: "2042",
-    title: "AI Faculty Launch",
-    desc: "First synthetic professor earns tenure-equivalent status.",
+    title: "Synthetic Faculty Integration",
+    desc: "A watershed moment in academic history as our first advanced AI instructional entity achieves tenure-equivalent recognition.",
   },
   {
     year: "2045",
-    title: "Metaverse Campus",
-    desc: "Fully immersive VR/AR campus opens to all students.",
+    title: "Immersive Virtual Campus",
+    desc: "Deployment of a fully realized, high-fidelity spatial computing campus, providing seamless VR/AR access to all students.",
   },
   {
     year: "2048",
-    title: "Quantum Lab",
-    desc: "Partnership with IBM Quantum — first school-owned quantum computer.",
+    title: "Quantum Computing Initiative",
+    desc: "Forged a strategic alliance with industry leaders to inaugurate the first student-accessible, institutionally-owned quantum computer.",
   },
 ];
 
 const testimonials = [
   {
-    text: "The AI tutor caught my learning gaps before I even felt confused. It's like having a personal mentor 24/7.",
+    text: "The predictive AI architecture identified and addressed my cognitive gaps before I even registered confusion. It provides an unparalleled level of bespoke, continuous mentorship.",
     author: "Priya M., Class of '44",
-    role: "Now AI Engineer at DeepMind",
+    role: "Lead AI Architect, DeepMind",
   },
   {
-    text: "I built my first prototype drone in the robotics lab. Within a year, it became a startup. Smart School 2040 gave me the tools and courage.",
+    text: "My initial autonomous drone prototype, developed in the cyber-physical lab, rapidly scaled into a funded venture. This institution doesn't just teach theory; it incubates reality.",
     author: "Kai L., Class of '45",
-    role: "Founder, AerialSense",
+    role: "Founder & CEO, AerialSense",
   },
   {
-    text: "Global classrooms changed my worldview. I debated climate policy with students from 30 countries — that's real education.",
+    text: "The holographic telepresence framework dissolved geographical barriers. Engaging in real-time socio-economic debates with peers across thirty nations redefined my understanding of global citizenship.",
     author: "Sofia R., Class of '46",
-    role: "UN Youth Ambassador",
+    role: "UN Youth Ambassador for Tech Policy",
   },
 ];
 
 const techStack = [
-  { name: "Quantum Computing", icon: Cpu },
-  { name: "Neural Interfaces", icon: Brain },
-  { name: "Holographic VR", icon: Rocket },
-  { name: "Swarm Robotics", icon: Sparkles },
+  { name: "Quantum Processing Infrastructure", icon: Cpu },
+  { name: "Cognitive-Neural Interfaces", icon: Brain },
+  { name: "Spatial Holographic Environments", icon: Rocket },
+  { name: "Autonomous Swarm Robotics", icon: Sparkles },
 ];
 
 // ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
@@ -1330,7 +1330,7 @@ export default function AboutPage() {
               Applications open for Class of 2049.
             </p>
             <button
-            onClick={() => router.push("/contact")}
+              onClick={() => router.push("/contact")}
               className="px-14 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.25em] rounded-full border-none transition-all duration-300"
               onMouseEnter={(e) => {
                 const el = e.target as HTMLElement;

@@ -1330,7 +1330,7 @@ export default function FacilitiesPage() {
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <button onClick={() => router.push("/contact")} className="px-14 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.25em] rounded-full transition-all duration-300 hover:scale-105 hover:bg-gray-100">
-                Apply 
+                Apply
               </button>
               <button onClick={() => router.push("/about")} className="px-14 py-4 border border-white/18 text-white/45 text-[10px] font-bold uppercase tracking-[0.25em] rounded-full transition-all duration-300 hover:border-white/4 hover:text-white">
                 About us

@@ -20,86 +20,86 @@ const steps = [
     id: "enroll",
     number: "01",
     phase: "Enrollment",
-    title: "You Arrive. The System Wakes Up.",
-    subtitle: "Day zero adaptive profiling",
+    title: "Welcome. The System Adapts to You.",
+    subtitle: "Day one smart assessment",
     description:
-      "On your first day, Smart School 2040 doesn't hand you a syllabus — it hands you a mirror. A 48-hour adaptive assessment builds a living neural profile of how you think, learn, and create. Not to grade you. To serve you.",
+      "On your first day, we don't just give you a schedule. Instead, a 48-hour smart assessment learns how you think, learn, and create. It doesn't grade you; it guides you.",
     detail:
-      "The profiling engine analyses thousands of micro-signals — response patterns, curiosity paths, peak attention windows, preferred abstraction levels — and uses them to sculpt a personalised learning architecture. Every student enters the same door and arrives somewhere completely different.",
+      "The system looks at how you respond to different tasks, what makes you curious, and when you focus best. It uses this information to build a learning plan just for you. Every student enters the same door, but follows their own unique path.",
     icon: Brain,
     visual: "neural-net",
-    tags: ["AI Profiling", "Zero Labels", "48h Onboarding"],
-    stat: { value: "48h", label: "to full calibration" },
+    tags: ["AI Profiling", "No Grades", "48h Setup"],
+    stat: { value: "48h", label: "to build your plan" },
   },
   {
     id: "learn",
     number: "02",
     phase: "Learning",
     title: "Classrooms That Think With You.",
-    subtitle: "Intelligent immersive environments",
+    subtitle: "Smart, interactive spaces",
     description:
-      "Every classroom surface is a display. Every desk is a haptic interface. The room itself reconfigures — lighting, acoustics, temperature — optimised in real time for your brain's current state. Learning is no longer something that happens in a room. It happens with it.",
+      "Every desk and wall is an interactive screen. The room itself changes its lighting, sound, and temperature to match what helps you focus best. Learning happens with the room, not just inside it.",
     detail:
-      "Embedded biosensors monitor cognitive load without interruption. When attention wanes, the system pivots — switching modality, injecting challenge, or offering a micro-recovery window. The result is a flow state maintained for hours at a time, something previously reserved for elite performers.",
+      "Smart sensors quietly check how well you are concentrating. If you start to lose focus, the room adjusts by changing the activity, adding a fun challenge, or giving you a short break. This helps you stay engaged for much longer.",
     icon: Layers,
     visual: "grid-pulse",
-    tags: ["Adaptive Rooms", "Biosensors", "Flow State AI"],
-    stat: { value: "3.4×", label: "deeper retention" },
+    tags: ["Smart Rooms", "Health Sensors", "Deep Focus AI"],
+    stat: { value: "3.4×", label: "better memory" },
   },
   {
     id: "build",
     number: "03",
     phase: "Creating",
-    title: "Your Ideas Ship. Immediately.",
-    subtitle: "Real infrastructure from day one",
+    title: "Bring Your Ideas to Life. Immediately.",
+    subtitle: "Real-world tools from day one",
     description:
-      "There's no sandbox. No simulation. Students build in the real world from their first semester — deploying code to live systems, fabricating hardware in the robotics bay, running experiments on actual quantum processors. The distinction between learning and doing dissolves.",
+      "We don't just use practice tests. Students build real things from their first semester. You will write real computer code, build robots in the lab, and run experiments on actual advanced computers.",
     detail:
-      "Access to a trillion-parameter reasoning model, unlimited cloud compute, and a network of 40+ specialised labs means the only bottleneck is imagination. A first-year student can go from idea to deployed product in under 72 hours. More than 2,000 student patents have been filed since 2040.",
+      "With access to powerful AI, unlimited cloud storage, and over 40 special labs, your imagination is the only limit. A new student can turn an idea into a real product in just 3 days. Our students have already filed over 2,000 patents.",
     icon: Zap,
     visual: "particle-field",
-    tags: ["Real Hardware", "Live Compute", "72h to Launch"],
-    stat: { value: "2K+", label: "patents by students" },
+    tags: ["Real Hardware", "Live Tools", "3 Days to Launch"],
+    stat: { value: "2K+", label: "student patents" },
   },
   {
     id: "connect",
     number: "04",
     phase: "Connecting",
-    title: "The World Is Your Cohort.",
-    subtitle: "Global intelligence network",
+    title: "The World Is Your Classroom.",
+    subtitle: "A global student network",
     description:
-      "Smart School 2040 doesn't teach in isolation. Every project taps into a living global mesh — 40,000 students across 12 cities working on shared problems, sharing real-time breakthroughs, forming instantaneous research cells around emerging challenges.",
+      "You never learn alone. Every project connects you to a global network of 40,000 students across 12 cities. You can share ideas, solve problems together, and form research teams instantly.",
     detail:
-      "Holographic telepresence lets you collaborate with peers in Tokyo, Nairobi, and São Paulo as if they're in the room. AI-mediated matchmaking surfaces collaborators based on complementary skill gaps and intellectual overlap — not geography, not social capital.",
+      "3D holograms let you work with classmates in Tokyo, Nairobi, and São Paulo as if they are right next to you. The AI matches you with partners who have the skills you need, no matter where they live.",
     icon: Globe,
     visual: "globe",
-    tags: ["40K Students", "12 Cities", "Holo Presence"],
-    stat: { value: "40K", label: "global peers" },
+    tags: ["40K Students", "12 Cities", "3D Holograms"],
+    stat: { value: "40K", label: "global classmates" },
   },
   {
     id: "evolve",
     number: "05",
     phase: "Evolving",
-    title: "The School Learns Too.",
-    subtitle: "Continuous institutional intelligence",
+    title: "The School Learns, Too.",
+    subtitle: "Always improving for you",
     description:
-      "Smart School 2040 is itself a learning system. Every student interaction feeds back into the school's own intelligence — refining curriculum, improving lab protocols, discovering which teaching approaches unlock which kinds of minds.",
+      "Our school is also a learning system. Every time a student interacts with it, the school gets smarter. It constantly improves what we teach, how our labs work, and how we help different types of minds learn best.",
     detail:
-      "A dedicated ethical AI board oversees all self-improvement loops, ensuring the system remains accountable to students rather than optimising for metrics. The school publishes its own learning data openly, contributing to global research on human cognition and pedagogy.",
+      "A dedicated team watches over the AI to make sure it always does what is best for the students. We also share what our system learns with the world, helping everyone understand how people learn best.",
     icon: BarChart3,
     visual: "waveform",
-    tags: ["Self-Improving", "Open Data", "Ethics Board"],
-    stat: { value: "∞", label: "improvement loops" },
+    tags: ["Self-Improving", "Open Data", "Safe AI"],
+    stat: { value: "∞", label: "constant updates" },
   },
 ];
 
 const pillars = [
-  { icon: Brain,        label: "Neural Profiling",   desc: "AI learns how you learn" },
-  { icon: Eye,          label: "Ambient Computing",  desc: "Every surface is an interface" },
-  { icon: Cpu,          label: "Real Infrastructure", desc: "Quantum to cloud, all accessible" },
-  { icon: MessageSquare,label: "AI Mentorship",       desc: "Trillion-parameter reasoning partner" },
-  { icon: Wifi,         label: "Global Mesh",         desc: "40K peers, 12 cities, live" },
-  { icon: Shield,       label: "Ethical AI",          desc: "Every system is accountable" },
+  { icon: Brain, label: "Smart Profiling", desc: "AI learns your learning style" },
+  { icon: Eye, label: "Interactive Spaces", desc: "Every surface is a touch screen" },
+  { icon: Cpu, label: "Real-World Tools", desc: "Access to advanced computers" },
+  { icon: MessageSquare, label: "AI Mentorship", desc: "A smart partner for your ideas" },
+  { icon: Wifi, label: "Global Network", desc: "40K students in 12 cities" },
+  { icon: Shield, label: "Safe & Ethical AI", desc: "Systems you can completely trust" },
 ];
 
 // ─── THREE.JS VISUALS ─────────────────────────────────────────────────────────
@@ -120,15 +120,15 @@ function useStepScene(id: string) {
     renderer.setClearColor(0x000000, 0);
     el.appendChild(renderer.domElement);
 
-    const scene  = new THREE.Scene();
+    const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 300);
     camera.position.set(0, 0, 5);
 
     let mX = 0, mY = 0;
     const onMM = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
-      mX = ((e.clientX - r.left) / r.width  - 0.5) * 2;
-      mY = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      mX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      mY = ((e.clientY - r.top) / r.height - 0.5) * 2;
     };
     el.addEventListener("mousemove", onMM);
 
@@ -189,7 +189,7 @@ function useStepScene(id: string) {
         const sg = new THREE.BoxGeometry(0.08, 0.08, 0.08);
         const sm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
         const s = new THREE.Mesh(sg, sm);
-        s.position.set((Math.random()-0.5)*5, (Math.random()-0.5)*2.5, (Math.random()-0.5)*1.5);
+        s.position.set((Math.random() - 0.5) * 5, (Math.random() - 0.5) * 2.5, (Math.random() - 0.5) * 1.5);
         group.add(s);
       }
     }
@@ -200,11 +200,11 @@ function useStepScene(id: string) {
       const pos = new Float32Array(count * 3);
       for (let i = 0; i < count; i++) {
         const theta = Math.random() * Math.PI * 2;
-        const phi   = Math.acos(2 * Math.random() - 1);
-        const r     = 0.5 + Math.random() * 2.5;
-        pos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
-        pos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-        pos[i*3+2] = r * Math.cos(phi);
+        const phi = Math.acos(2 * Math.random() - 1);
+        const r = 0.5 + Math.random() * 2.5;
+        pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        pos[i * 3 + 2] = r * Math.cos(phi);
       }
       const pg = new THREE.BufferGeometry();
       pg.setAttribute("position", new THREE.BufferAttribute(pos, 3));
@@ -235,7 +235,7 @@ function useStepScene(id: string) {
       // City dots
       for (let i = 0; i < 20; i++) {
         const theta = Math.random() * Math.PI * 2;
-        const phi   = (Math.random() * 1.2 - 0.6);
+        const phi = (Math.random() * 1.2 - 0.6);
         const dg = new THREE.SphereGeometry(0.04, 6, 6);
         const dm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
         const dot = new THREE.Mesh(dg, dm);
@@ -272,7 +272,7 @@ function useStepScene(id: string) {
       frame++;
 
       group.rotation.y += (mX * 0.35 - group.rotation.y) * 0.04;
-      group.rotation.x += (-mY * 0.2  - group.rotation.x) * 0.04;
+      group.rotation.x += (-mY * 0.2 - group.rotation.x) * 0.04;
 
       if (id === "neural-net") {
         group.rotation.y += 0.003;
@@ -480,10 +480,10 @@ function HeroScene() {
 
 function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   const [open, setOpen] = useState(false);
-  const ref      = useRef<HTMLDivElement>(null);
-  const inView   = useInView(ref, { once: true, margin: "-60px" });
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const sceneRef = useStepScene(step.visual);
-  const isEven   = index % 2 === 0;
+  const isEven = index % 2 === 0;
 
   return (
     <motion.div
@@ -605,9 +605,10 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
           {/* Overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: isEven
-              ? "linear-gradient(to right, rgba(0,0,0,0.25) 0%, transparent 40%)"
-              : "linear-gradient(to left, rgba(0,0,0,0.25) 0%, transparent 40%)"
+            style={{
+              background: isEven
+                ? "linear-gradient(to right, rgba(0,0,0,0.25) 0%, transparent 40%)"
+                : "linear-gradient(to left, rgba(0,0,0,0.25) 0%, transparent 40%)"
             }}
           />
 
@@ -629,7 +630,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
 // ─── PILLAR GRID ───────────────────────────────────────────────────────────────
 
 function PillarGrid() {
-  const ref    = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
@@ -688,10 +689,10 @@ export default function HowItWorks() {
   const router = useRouter()
 
   const { scrollY } = useScroll();
-  const heroY       = useTransform(scrollY, [0, 700], [0, -100]);
+  const heroY = useTransform(scrollY, [0, 700], [0, -100]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
   const [activeStep, setActiveStep] = useState(0);
-  const stepRefs    = useRef<(HTMLDivElement | null)[]>([]);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scrollToStep = useCallback((i: number) => {
     setActiveStep(i);
@@ -699,7 +700,7 @@ export default function HowItWorks() {
   }, []);
 
   const fadeUp = {
-    hidden:  { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
   };
 
@@ -919,7 +920,7 @@ export default function HowItWorks() {
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <button onClick={() => router.push("/contact")} className="px-12 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.22em] rounded-full transition-all duration-300 hover:scale-105 hover:bg-gray-100">
-                contact us 
+                contact us
               </button>
               <button
                 onClick={() => router.push("/facilities")}

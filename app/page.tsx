@@ -164,38 +164,38 @@ const days = [
   {
     time: "08:00",
     label: "Morning",
-    title: "Your AI tutor briefs you before class even starts.",
-    sub: "It read your confusion from yesterday's session and rewrote today's curriculum overnight.",
+    title: "Your smart AI tutor prepares you for the day.",
+    sub: "It noticed what you struggled with yesterday and completely updated your lessons overnight to help you learn better today.",
   },
   {
     time: "09:30",
     label: "Lab",
-    title: "You load a live quantum circuit on a 127-qubit processor.",
-    sub: "Not a simulation. A real machine. Your classmates in Seoul are on the same job.",
+    title: "You run a program on a real quantum computer.",
+    sub: "This is not a practice test. It is a real, advanced machine, and you are working on it live with your classmates in Seoul.",
   },
   {
     time: "11:00",
     label: "Studio",
-    title: "A 40-metre hologram of the human heart fills the room.",
-    sub: "You reach in. Rotate an artery. The AI annotates in real time. No headset required.",
+    title: "A massive 3D hologram of a human heart fills the room.",
+    sub: "You can reach out and rotate it with your hands to study it closely. The AI explains the parts to you, and you don't even need a VR headset.",
   },
   {
     time: "13:00",
     label: "Workshop",
-    title: "Your robot arm ships its first hardware — in Week 3.",
-    sub: "Three hours of CNC milling, one AI co-pilot, zero prior machining experience.",
+    title: "You build your very first robotic part in Week 3.",
+    sub: "With the help of your smart AI partner and our advanced tools, you create real, working hardware even if you have never built anything before.",
   },
   {
     time: "15:30",
     label: "Research",
-    title: "Your paper gets flagged for a Nature submission.",
-    sub: "The CRISPR edit you ran last month turned out to be novel. The AI knew before you did.",
+    title: "Your science project gets chosen for a real science journal.",
+    sub: "The biology experiment you ran in the lab last month created something entirely new, and the school helps you share it with the world.",
   },
   {
     time: "19:00",
     label: "Night",
-    title: "You patch a zero-day in the red-team scenario.",
-    sub: "Six campuses competing. Your fix goes live on the global CTF leaderboard in real time.",
+    title: "You stop a live cyber attack in the digital arena.",
+    sub: "You are competing safely against six other schools. When you fix the problem, your score instantly pops up on the global leaderboard.",
   },
 ];
 
@@ -427,20 +427,20 @@ function DayInTheLifeSection() {
 
 const comparisons = [
   {
-    old: "A textbook written 10 years ago.",
-    now: "A curriculum that rewrites itself tonight.",
+    old: "Learning from an outdated textbook.",
+    now: "A smart curriculum that updates itself every single day.",
   },
   {
-    old: "Raise your hand and wait.",
-    now: "Your AI tutor answers before you finish the thought.",
+    old: "Raising your hand and waiting for help.",
+    now: "A personal AI tutor ready to answer you instantly.",
   },
   {
-    old: "A lab you book two weeks ahead.",
-    now: "127 qubits. Available now. No queue.",
+    old: "Waiting weeks to book a basic lab.",
+    now: "Instant, 24/7 access to the world's most advanced computers.",
   },
   {
-    old: "A degree you finish, then use.",
-    now: "A patent you file in semester one.",
+    old: "Waiting until graduation to use your skills.",
+    now: "Building real products and filing patents in your very first term.",
   },
 ];
 
@@ -876,23 +876,23 @@ function GlobalSection() {
 const principles = [
   {
     n: "I",
-    title: "No Prerequisites. Only Curiosity.",
-    body: "You don't need a background in quantum physics to touch a quantum computer on day one. The machine doesn't care where you started.",
+    title: "Curiosity is the Only Requirement.",
+    body: "You do not need to be an expert to use an advanced computer on your first day. We care about where you are going, not where you started.",
   },
   {
     n: "II",
-    title: "Build Real Things. Ship on Day One.",
-    body: "Every project here is a working prototype. Not an assignment. Not a case study. Something that moves, thinks, computes, or heals.",
+    title: "Build Real Things from Day One.",
+    body: "Every project you do here is a real, working model. We don't just write reports. You will create things that move, think, and actually work in the real world.",
   },
   {
     n: "III",
-    title: "Failure is the Curriculum.",
-    body: "The AI tracks your wrong turns, your dead ends, your failed experiments. Then it rebuilds your curriculum around them. Error is data.",
+    title: "Learn From Every Mistake.",
+    body: "Our smart AI looks at your mistakes and failed experiments, then changes your lessons to help you understand better. Here, every error is just helpful data.",
   },
   {
     n: "IV",
-    title: "The Future Can't Wait for Graduation.",
-    body: "Students here file patents, publish papers, and launch ventures before they leave. The world doesn't wait. Neither do we.",
+    title: "The Future Will Not Wait.",
+    body: "Our students invent new tools, publish real research, and start companies before they even finish school. The world is moving fast, and so are we.",
   },
 ];
 
