@@ -67,89 +67,89 @@ const stats = [
 const pillars = [
   {
     num: "01",
-    title: "Adaptive AI-Driven Personalization",
+    title: "AI-Based Personalized Learning",
     icon: Hexagon,
-    desc: "Advanced AI systems dynamically design hyper-personalized learning pathways tailored to each student's pace and goals.",
+    desc: "AI systems create personalized learning plans based on each student's pace and goals.",
     longDesc:
-      "Education is no longer one-size-fits-all. Our advanced AI tutoring systems dynamically design hyper-personalized learning pathways for every student. By adjusting complexity in real-time, curating optimal multimedia resources, and providing 24/7 simulated one-on-one coaching, we ensure that every learner achieves mastery at their own ideal pace.",
+      "Learning is no longer the same for everyone. Our AI systems design personalized learning paths for each student. They adjust the difficulty level in real time, provide the right study materials, and offer continuous support. This helps every student understand concepts clearly and progress at their own pace.",
   },
   {
     num: "02",
-    title: "Seamless Robotics Integration",
+    title: "Robotics and Practical Learning",
     icon: Cog,
-    desc: "Hands-on engineering environments where students build, program, and collaborate with autonomous systems.",
+    desc: "Students gain hands-on experience by building and working with robotic systems.",
     longDesc:
-      "Theoretical knowledge meets physical execution. Students collaborate daily with advanced humanoid assistants and autonomous systems, integrating automation into routine problem-solving. To bridge the gap between conceptual design and real-world application, our foundational robotics curriculum is mandatory for all first-year students.",
+      "Students do more than just study theory—they apply it in real situations. They work with robots and automated systems to solve problems and build projects. Basic robotics is part of the curriculum, helping students connect classroom learning with real-world applications.",
   },
   {
     num: "03",
-    title: "Borderless Global Classrooms",
+    title: "Global Connected Classrooms",
     icon: Globe,
-    desc: "Globally interconnected spaces featuring high-fidelity holographic telepresence and instantaneous real-time translation.",
+    desc: "Students learn and collaborate with others around the world in real time.",
     longDesc:
-      "Geography is no longer a limitation to academic collaboration. Through high-fidelity holographic telepresence and instantaneous, real-time translation, our learning spaces are globally interconnected. Students can seamlessly engage in cross-continental debates or joint projects—all of which are recorded, transcribed, and analytically scored by AI for deep reflection.",
+      "Distance is no longer a barrier. Students can interact with classmates from different countries through advanced communication technologies. They can work on projects together, take part in discussions, and learn from global perspectives, making education more connected and diverse.",
   },
   {
     num: "04",
-    title: "Applied Innovation & Research",
+    title: "Innovation and Research Focus",
     icon: Microscope,
-    desc: "A culture prioritizing creation over memorization, ensuring every student develops a tangible prototype or startup.",
+    desc: "Students focus on creating real projects instead of only memorizing theory.",
     longDesc:
-      "We prioritize creation over memorization. The culmination of a student's journey here is not a standard written thesis, but a tangible prototype, a published peer-reviewed paper, or a launched startup. Supported by our dedicated on-campus intellectual property clinic, we actively transform academic inquiries into real-world impact.",
+      "The focus is on creating and applying knowledge. Instead of only writing exams, students work on projects, research, or even start their own ideas. The school supports them in turning their work into real outcomes such as prototypes, research papers, or startups.",
   },
 ];
 
 const milestones = [
   {
     year: "2038",
-    title: "Strategic Foundation",
-    desc: "The foundational blueprint is officially ratified by a leading consortium of global education technology pioneers.",
+    title: "Foundation Established",
+    desc: "The school’s vision and structure are officially approved by a global group of education and technology experts.",
   },
   {
     year: "2040",
-    title: "Inaugural Global Cohort",
-    desc: "Welcomed 500 pioneering students from 12 nations into our revolutionary, borderless digital-first learning ecosystem.",
+    title: "First Student Batch",
+    desc: "The school welcomes its first 500 students from 12 countries into a modern, technology-driven learning environment.",
   },
   {
     year: "2042",
-    title: "Synthetic Faculty Integration",
-    desc: "A watershed moment in academic history as our first advanced AI instructional entity achieves tenure-equivalent recognition.",
+    title: "AI Teaching Integration",
+    desc: "Advanced AI systems are introduced as teaching assistants, supporting students with personalized guidance and instruction.",
   },
   {
     year: "2045",
-    title: "Immersive Virtual Campus",
-    desc: "Deployment of a fully realized, high-fidelity spatial computing campus, providing seamless VR/AR access to all students.",
+    title: "Virtual Campus Launch",
+    desc: "A fully interactive virtual campus is introduced, allowing students to learn through VR and AR from anywhere.",
   },
   {
     year: "2048",
-    title: "Quantum Computing Initiative",
-    desc: "Forged a strategic alliance with industry leaders to inaugurate the first student-accessible, institutionally-owned quantum computer.",
+    title: "Quantum Learning Program",
+    desc: "The school partners with technology leaders to provide students access to advanced quantum computing systems.",
   },
 ];
 
 const testimonials = [
   {
-    text: "The predictive AI architecture identified and addressed my cognitive gaps before I even registered confusion. It provides an unparalleled level of bespoke, continuous mentorship.",
+    text: "The AI system quickly identified my learning gaps and helped me improve even before I realized my mistakes. It felt like having a personal mentor available at all times.",
     author: "Priya M., Class of '44",
     role: "Lead AI Architect, DeepMind",
   },
   {
-    text: "My initial autonomous drone prototype, developed in the cyber-physical lab, rapidly scaled into a funded venture. This institution doesn't just teach theory; it incubates reality.",
+    text: "I built my first drone prototype in the lab, and it later grew into a funded startup. This school goes beyond teaching theory—it helps turn ideas into real projects.",
     author: "Kai L., Class of '45",
     role: "Founder & CEO, AerialSense",
   },
   {
-    text: "The holographic telepresence framework dissolved geographical barriers. Engaging in real-time socio-economic debates with peers across thirty nations redefined my understanding of global citizenship.",
+    text: "Learning with students from different countries in real time changed my perspective. It helped me better understand global issues and think beyond borders.",
     author: "Sofia R., Class of '46",
     role: "UN Youth Ambassador for Tech Policy",
   },
 ];
 
 const techStack = [
-  { name: "Quantum Processing Infrastructure", icon: Cpu },
-  { name: "Cognitive-Neural Interfaces", icon: Brain },
-  { name: "Spatial Holographic Environments", icon: Rocket },
-  { name: "Autonomous Swarm Robotics", icon: Sparkles },
+  { name: "Quantum Computing Systems", icon: Cpu },
+  { name: "Brain-Computer Interfaces", icon: Brain },
+  { name: "3D Holographic Learning Environments", icon: Rocket },
+  { name: "Autonomous Robotics Systems", icon: Sparkles },
 ];
 
 // ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
@@ -794,9 +794,7 @@ export default function AboutPage() {
                 className="max-w-lg text-base leading-relaxed font-light mb-12"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
-                A fully immersive, AI-native campus where every student becomes
-                a creator, thinker, and leader — powered by technologies that
-                don't exist yet.
+                A fully immersive, AI-driven campus where every student develops as a creator, critical thinker, and leader—supported by advanced technologies designed to enhance learning.
               </p>
 
               {/* CTAs */}

@@ -40,14 +40,14 @@ const facilities = [
     id: "quantum-lab",
     number: "01",
     name: "Quantum Computing Lab",
-    tagline: "Compute at the edge of physics",
+    tagline: "Advanced computing at the limits of science",
     icon: Atom,
-    desc: "The only school on Earth with its own IBM Quantum processor. Students run real quantum algorithms — not simulations. The 127-qubit system enables research otherwise limited to national laboratories.",
+    desc: "Students work on real quantum computing systems, gaining hands-on experience with advanced algorithms and research tools typically used in high-level laboratories.",
     specs: [
       "127-qubit processor",
-      "0.001ms gate time",
-      "99.9% fidelity",
-      "24/7 access",
+      "High-speed operations",
+      "High accuracy performance",
+      "Continuous access",
     ],
     visual: "quantum",
   },
@@ -55,104 +55,104 @@ const facilities = [
     id: "neural-studio",
     number: "02",
     name: "Neural Interface Studio",
-    tagline: "Where mind meets machine",
+    tagline: "Connecting the human mind and technology",
     icon: Brain,
-    desc: "High-density EEG rigs, haptic exoskeletons, and BCI development kits. Students design and test direct neural input systems in a fully equipped neurotechnology suite.",
+    desc: "A specialized lab where students explore brain-computer interaction using advanced neural monitoring and response systems.",
     specs: [
-      "256-channel EEG",
-      "Sub-ms latency",
-      "Full haptic suit",
-      "AI calibration",
+      "Multi-channel EEG systems",
+      "Low-latency response",
+      "Haptic feedback equipment",
+      "AI-assisted calibration",
     ],
     visual: "neural",
   },
   {
     id: "holo-arena",
     number: "03",
-    name: "Holographic Arena",
-    tagline: "Reality is a canvas",
+    name: "Holographic Learning Arena",
+    tagline: "Experience learning in three dimensions",
     icon: Eye,
-    desc: "A 360° volumetric display chamber spanning 40 metres. Projects photorealistic holograms at 1:1 scale — from molecular structures to architectural walkthroughs. No headsets required.",
+    desc: "A large-scale immersive space that displays realistic 3D holograms, allowing students to explore complex concepts visually without additional devices.",
     specs: [
-      "40m diameter",
-      "32K resolution",
-      "120fps refresh",
-      "360° surround",
+      "Large immersive space",
+      "Ultra-high resolution display",
+      "Smooth real-time rendering",
+      "Full 360° interaction",
     ],
     visual: "holo",
   },
   {
     id: "robotics-bay",
     number: "04",
-    name: "Robotics Bay",
-    tagline: "Build what doesn't exist yet",
+    name: "Robotics Development Bay",
+    tagline: "Create and test real machines",
     icon: Cpu,
-    desc: "An industrial-scale robotics fabrication bay housing 20+ robotic arms, drone test corridors, and a live swarm simulation environment. Students ship real hardware in semester one.",
+    desc: "An advanced workspace where students design, build, and test robotic systems, gaining practical engineering experience from an early stage.",
     specs: [
-      "20+ robotic arms",
-      "Drone corridor",
-      "Swarm sandbox",
-      "CNC + 3D forge",
+      "Multiple robotic systems",
+      "Drone testing area",
+      "Simulation environments",
+      "Fabrication tools",
     ],
     visual: "robotics",
   },
   {
     id: "deep-space",
     number: "05",
-    name: "Deep Space Observatory",
-    tagline: "Eyes on the universe",
+    name: "Space Observation Center",
+    tagline: "Explore and study the universe",
     icon: Radio,
-    desc: "A rooftop telescope array paired with real-time satellite feeds and a radio telescope dish. Students contribute data to live astrophysics research programs worldwide.",
+    desc: "A facility equipped with telescopes and data systems that allow students to observe space and contribute to ongoing research projects.",
     specs: [
-      "2m primary mirror",
-      "SAT uplink",
-      "Radio dish",
-      "Live data pipeline",
+      "High-resolution telescope",
+      "Satellite data access",
+      "Radio observation tools",
+      "Live data streams",
     ],
     visual: "space",
   },
   {
     id: "biosynth",
     number: "06",
-    name: "BioSynth Lab",
-    tagline: "Engineer life itself",
+    name: "Biotechnology Lab",
+    tagline: "Discover and innovate in life sciences",
     icon: Microscope,
-    desc: "A BSL-2 certified synthetic biology laboratory with CRISPR editing stations, protein folding workstations, and live culture chambers. Guided by AI safety protocols at every step.",
+    desc: "A controlled laboratory where students study biology and biotechnology, working with modern tools under strict safety guidelines.",
     specs: [
-      "BSL-2 certified",
-      "CRISPR editing",
-      "AI biosafety",
-      "Live cultures",
+      "Certified lab environment",
+      "Genetic research tools",
+      "AI safety systems",
+      "Live sample analysis",
     ],
     visual: "bio",
   },
   {
     id: "cyber-grid",
     number: "07",
-    name: "CyberGrid Arena",
-    tagline: "Red team. Blue team. Real stakes.",
+    name: "Cybersecurity Arena",
+    tagline: "Learn to defend digital systems",
     icon: Shield,
-    desc: "An isolated cyber range with live attack-defense simulations. Students face real-world threat scenarios — infrastructure attacks, zero-days, and adversarial AI — in a contained environment.",
+    desc: "A secure environment where students practice identifying and preventing cyber threats through realistic simulations.",
     specs: [
-      "Air-gapped network",
-      "Live red teams",
-      "AI adversaries",
-      "CTF leaderboard",
+      "Isolated network systems",
+      "Simulated attack scenarios",
+      "AI-based threat models",
+      "Performance tracking",
     ],
     visual: "cyber",
   },
   {
     id: "zero-g",
     number: "08",
-    name: "Zero-G Design Studio",
-    tagline: "Design for the void",
+    name: "Zero-Gravity Design Studio",
+    tagline: "Design for space environments",
     icon: Rocket,
-    desc: "A microgravity simulation suite with parabolic flight training modules and satellite hardware testbeds. Students design systems for orbital and lunar deployment.",
+    desc: "A specialized lab where students learn to design and test systems for use in low-gravity and space conditions.",
     specs: [
-      "Microgravity sim",
-      "Parabolic module",
-      "CubeSat testbed",
-      "ESA partnership",
+      "Microgravity simulation",
+      "Training modules",
+      "Satellite testing tools",
+      "Research partnerships",
     ],
     visual: "zero-g",
   },
@@ -162,7 +162,7 @@ const stats = [
   { value: "40+", label: "World-Class Labs", desc: "Across 8 disciplines" },
   { value: "2K+", label: "Patents Filed", desc: "By students since 2040" },
   { value: "24/7", label: "Open Access", desc: "No booking required" },
-  { value: "∞", label: "Compute Quota", desc: "Unlimited cloud credits" },
+  { value: "∞", label: "Computing Resources", desc: "Full access to cloud systems" },
 ];
 
 // ─── THREE.JS SCENES ─────────────────────────────────────────────────────────
@@ -1119,9 +1119,7 @@ export default function FacilitiesPage() {
                 className="max-w-xl mx-auto text-base leading-relaxed font-light mb-12"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
-                Eight next-generation laboratories built for students who refuse
-                to wait for the future. Quantum processors. Neural interfaces.
-                Holographic chambers. All real. All open.
+                Eight modern labs built for students who want to learn ahead of their time. Quantum computers, neural systems, and holographic spaces, all available for use.
               </p>
 
               <div className="flex gap-4 justify-center flex-wrap">
@@ -1272,10 +1270,7 @@ export default function FacilitiesPage() {
                 className="text-base leading-relaxed font-light"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
-                Every lab at Smart School 2040 was designed with a single
-                principle: if you can imagine it, you should be able to build it
-                here. Click any facility below to explore its specifications and
-                interact with a live 3D preview.
+                Every lab at Smart School 2040 is designed around one key principle: if you can imagine it, you should be able to build it here. Select any facility below to view its specifications and explore an interactive 3D preview.
               </p>
             </div>
           </motion.div>

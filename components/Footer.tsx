@@ -74,12 +74,12 @@ function SpinningCube({ size = 22 }: { size?: number }) {
         }}
       >
         {[
-          "translateZ(" + size/2 + "px)",
-          "rotateY(180deg) translateZ(" + size/2 + "px)",
-          "rotateY(90deg) translateZ(" + size/2 + "px)",
-          "rotateY(-90deg) translateZ(" + size/2 + "px)",
-          "rotateX(90deg) translateZ(" + size/2 + "px)",
-          "rotateX(-90deg) translateZ(" + size/2 + "px)",
+          "translateZ(" + size / 2 + "px)",
+          "rotateY(180deg) translateZ(" + size / 2 + "px)",
+          "rotateY(90deg) translateZ(" + size / 2 + "px)",
+          "rotateY(-90deg) translateZ(" + size / 2 + "px)",
+          "rotateX(90deg) translateZ(" + size / 2 + "px)",
+          "rotateX(-90deg) translateZ(" + size / 2 + "px)",
         ].map((t, i) => (
           <div
             key={i}
@@ -130,7 +130,7 @@ function FooterTicker() {
 // ─── STAT COUNTER ─────────────────────────────────────────────────────────────
 
 function StatCounter({ value, label }: { value: string; label: string }) {
-  const ref    = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
   return (
     <motion.div
@@ -253,50 +253,50 @@ const NAV_COLS = [
   {
     title: "Platform",
     links: [
-      { label: "Home",         href: "/" },
-      { label: "About Us",     href: "/about" },
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "/about" },
       { label: "How It Works", href: "/how-it-works" },
-      { label: "Facilities",   href: "/facilities" },
+      { label: "Facilities", href: "/facilities" },
     ],
   },
   {
     title: "Ecosystem",
     links: [
-      { label: "Neural Labs",   href: "#" },
-      { label: "Simulations",   href: "#" },
-      { label: "Hardware",      href: "#" },
-      { label: "Protocols",     href: "#" },
+      { label: "Neural Labs", href: "#" },
+      { label: "Simulations", href: "#" },
+      { label: "Hardware", href: "#" },
+      { label: "Protocols", href: "#" },
     ],
   },
   {
     title: "Systems",
     links: [
-      { label: "Access Control",  href: "#" },
-      { label: "Documentation",   href: "#" },
-      { label: "Status",          href: "#" },
-      { label: "Network",         href: "#" },
+      { label: "Access Control", href: "#" },
+      { label: "Documentation", href: "#" },
+      { label: "Status", href: "#" },
+      { label: "Network", href: "#" },
     ],
   },
 ];
 
 const STATS = [
-  { value: "40+",  label: "World-class labs" },
-  { value: "2K+",  label: "Student patents" },
-  { value: "12",   label: "Global campuses" },
+  { value: "40+", label: "World-class labs" },
+  { value: "2K+", label: "Student patents" },
+  { value: "12", label: "Global campuses" },
   { value: "2040", label: "Est. future" },
 ];
 
 const LAB_ICONS = [
-  { Icon: Atom,   code: "QCL" },
-  { Icon: Brain,  code: "NIS" },
-  { Icon: Cpu,    code: "RBY" },
-  { Icon: Radio,  code: "DSO" },
+  { Icon: Atom, code: "QCL" },
+  { Icon: Brain, code: "NIS" },
+  { Icon: Cpu, code: "RBY" },
+  { Icon: Radio, code: "DSO" },
 ];
 
 export default function Footer() {
-  const year     = new Date().getFullYear();
-  const rootRef  = useRef<HTMLElement>(null);
-  const inView   = useInView(rootRef, { once: true, margin: "-60px" });
+  const year = new Date().getFullYear();
+  const rootRef = useRef<HTMLElement>(null);
+  const inView = useInView(rootRef, { once: true, margin: "-60px" });
 
   return (
     <footer
@@ -396,7 +396,7 @@ export default function Footer() {
                 className="mt-4 text-sm font-light leading-relaxed max-w-xs"
                 style={{ color: "rgba(255,255,255,0.32)" }}
               >
-                The world's first fully adaptive, AI-native school. Eight next-generation labs. Zero gatekeeping. Built for the minds of tomorrow.
+                A modern AI-based school with eight advanced labs, open to everyone, built for future learners.
               </p>
             </motion.div>
 
@@ -430,7 +430,7 @@ export default function Footer() {
                     transition: "border-color 0.3s",
                   }}
                   onFocus={e => (e.target.style.borderColor = "rgba(255,255,255,0.4)")}
-                  onBlur={e  => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+                  onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                 />
                 <SubmitBtn />
               </div>

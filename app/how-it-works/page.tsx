@@ -21,85 +21,85 @@ const steps = [
     number: "01",
     phase: "Enrollment",
     title: "Welcome. The System Adapts to You.",
-    subtitle: "Day one smart assessment",
+    subtitle: "Initial smart assessment",
     description:
-      "On your first day, we don't just give you a schedule. Instead, a 48-hour smart assessment learns how you think, learn, and create. It doesn't grade you; it guides you.",
+      "On your first day, you do not receive a fixed schedule. Instead, a 48-hour smart assessment understands how you think, learn, and solve problems. It focuses on guidance rather than grading.",
     detail:
-      "The system looks at how you respond to different tasks, what makes you curious, and when you focus best. It uses this information to build a learning plan just for you. Every student enters the same door, but follows their own unique path.",
+      "The system analyzes your responses, interests, and focus patterns. Based on this, it creates a personalized learning plan for you. While every student begins the same way, each follows a unique learning path.",
     icon: Brain,
     visual: "neural-net",
-    tags: ["AI Profiling", "No Grades", "48h Setup"],
-    stat: { value: "48h", label: "to build your plan" },
+    tags: ["AI Profiling", "Personalized Learning", "48h Setup"],
+    stat: { value: "48h", label: "to create your plan" },
   },
   {
     id: "learn",
     number: "02",
     phase: "Learning",
-    title: "Classrooms That Think With You.",
-    subtitle: "Smart, interactive spaces",
+    title: "Intelligent Learning Environments",
+    subtitle: "Interactive and adaptive classrooms",
     description:
-      "Every desk and wall is an interactive screen. The room itself changes its lighting, sound, and temperature to match what helps you focus best. Learning happens with the room, not just inside it.",
+      "Classrooms are fully interactive, with digital surfaces and adaptive environments that support better focus and engagement.",
     detail:
-      "Smart sensors quietly check how well you are concentrating. If you start to lose focus, the room adjusts by changing the activity, adding a fun challenge, or giving you a short break. This helps you stay engaged for much longer.",
+      "Smart systems monitor attention levels and adjust lighting, sound, or activities when needed. This ensures students remain engaged and can learn more effectively over longer periods.",
     icon: Layers,
     visual: "grid-pulse",
-    tags: ["Smart Rooms", "Health Sensors", "Deep Focus AI"],
-    stat: { value: "3.4×", label: "better memory" },
+    tags: ["Smart Classrooms", "Adaptive Environment", "Focused Learning"],
+    stat: { value: "3.4×", label: "improvement in retention" },
   },
   {
     id: "build",
     number: "03",
     phase: "Creating",
-    title: "Bring Your Ideas to Life. Immediately.",
-    subtitle: "Real-world tools from day one",
+    title: "Turn Ideas into Reality",
+    subtitle: "Hands-on learning from the start",
     description:
-      "We don't just use practice tests. Students build real things from their first semester. You will write real computer code, build robots in the lab, and run experiments on actual advanced computers.",
+      "Students begin working on real projects early in their learning journey, including coding, robotics, and scientific experiments.",
     detail:
-      "With access to powerful AI, unlimited cloud storage, and over 40 special labs, your imagination is the only limit. A new student can turn an idea into a real product in just 3 days. Our students have already filed over 2,000 patents.",
+      "With access to advanced tools, AI support, and specialized labs, students can quickly develop their ideas into working models or solutions. Creativity and practical application are strongly encouraged.",
     icon: Zap,
     visual: "particle-field",
-    tags: ["Real Hardware", "Live Tools", "3 Days to Launch"],
-    stat: { value: "2K+", label: "student patents" },
+    tags: ["Practical Learning", "Advanced Tools", "Innovation"],
+    stat: { value: "2000+", label: "student-created projects" },
   },
   {
     id: "connect",
     number: "04",
     phase: "Connecting",
-    title: "The World Is Your Classroom.",
-    subtitle: "A global student network",
+    title: "A Truly Global Classroom",
+    subtitle: "Collaboration without borders",
     description:
-      "You never learn alone. Every project connects you to a global network of 40,000 students across 12 cities. You can share ideas, solve problems together, and form research teams instantly.",
+      "Students collaborate with peers from around the world, sharing ideas and working together on projects in real time.",
     detail:
-      "3D holograms let you work with classmates in Tokyo, Nairobi, and São Paulo as if they are right next to you. The AI matches you with partners who have the skills you need, no matter where they live.",
+      "Using advanced communication tools, including 3D interaction technologies, students can connect with others globally as if they are in the same room. The system also helps match students with suitable collaborators.",
     icon: Globe,
     visual: "globe",
-    tags: ["40K Students", "12 Cities", "3D Holograms"],
-    stat: { value: "40K", label: "global classmates" },
+    tags: ["Global Network", "Real-Time Collaboration", "Diverse Learning"],
+    stat: { value: "40K", label: "students worldwide" },
   },
   {
     id: "evolve",
     number: "05",
     phase: "Evolving",
-    title: "The School Learns, Too.",
-    subtitle: "Always improving for you",
+    title: "A System That Continuously Improves",
+    subtitle: "Learning that adapts over time",
     description:
-      "Our school is also a learning system. Every time a student interacts with it, the school gets smarter. It constantly improves what we teach, how our labs work, and how we help different types of minds learn best.",
+      "The school continuously improves by learning from every student interaction, making education more effective over time.",
     detail:
-      "A dedicated team watches over the AI to make sure it always does what is best for the students. We also share what our system learns with the world, helping everyone understand how people learn best.",
+      "Data is carefully analyzed to improve teaching methods, tools, and student support systems. At the same time, strong safeguards ensure that all systems remain safe, reliable, and focused on student well-being.",
     icon: BarChart3,
     visual: "waveform",
-    tags: ["Self-Improving", "Open Data", "Safe AI"],
-    stat: { value: "∞", label: "constant updates" },
+    tags: ["Continuous Improvement", "Data-Driven", "Responsible AI"],
+    stat: { value: "Ongoing", label: "system updates" },
   },
 ];
 
 const pillars = [
-  { icon: Brain, label: "Smart Profiling", desc: "AI learns your learning style" },
-  { icon: Eye, label: "Interactive Spaces", desc: "Every surface is a touch screen" },
-  { icon: Cpu, label: "Real-World Tools", desc: "Access to advanced computers" },
-  { icon: MessageSquare, label: "AI Mentorship", desc: "A smart partner for your ideas" },
-  { icon: Wifi, label: "Global Network", desc: "40K students in 12 cities" },
-  { icon: Shield, label: "Safe & Ethical AI", desc: "Systems you can completely trust" },
+  { icon: Brain, label: "Personalized Learning", desc: "AI understands your learning style and adapts lessons to suit you" },
+  { icon: Eye, label: "Interactive Classrooms", desc: "Learning spaces where every surface can be used for interaction" },
+  { icon: Cpu, label: "Advanced Learning Tools", desc: "Access to modern and powerful technology for practical learning" },
+  { icon: MessageSquare, label: "AI Guidance", desc: "A smart assistant that supports your ideas and learning" },
+  { icon: Wifi, label: "Global Connectivity", desc: "Connected with thousands of students across different locations" },
+  { icon: Shield, label: "Safe and Responsible AI", desc: "Technology designed to be secure, reliable, and ethical" },
 ];
 
 // ─── THREE.JS VISUALS ─────────────────────────────────────────────────────────
@@ -736,7 +736,7 @@ export default function HowItWorks() {
               <div className="w-12 h-px mx-auto mb-8" style={{ background: "rgba(255,255,255,0.22)" }} />
 
               <p className="max-w-lg mx-auto text-base leading-relaxed font-light mb-10" style={{ color: "rgba(255,255,255,0.42)", fontSize: "clamp(14px, 1.8vw, 17px)" }}>
-                Five phases. One continuous loop. This is learning reimagined from the ground up — not for the classroom of today, but for the minds of tomorrow.
+                Five phases working together in a continuous cycle. This is a new way of learning, built for the needs of future students.
               </p>
 
               {/* Step count pills */}
@@ -799,10 +799,10 @@ export default function HowItWorks() {
               </div>
               <div>
                 <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  Smart School 2040 is a closed loop between student and institution. The school watches, learns, reconfigures, and evolves in response to every interaction — not in aggregate, but individually. No two students experience the same school.
+                  Smart School 2040 creates a continuous connection between students and the school. It learns from each student’s actions and adjusts accordingly, ensuring that everyone has a unique learning experience.
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
-                  Below is the framework. Five phases that run in sequence and then cycle back — continuously deepening, continuously adapting.
+                  The framework below shows five phases that follow one another and repeat, helping learning improve step by step.
                 </p>
               </div>
             </div>

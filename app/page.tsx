@@ -164,38 +164,38 @@ const days = [
   {
     time: "08:00",
     label: "Morning",
-    title: "Your smart AI tutor prepares you for the day.",
-    sub: "It noticed what you struggled with yesterday and completely updated your lessons overnight to help you learn better today.",
+    title: "Your AI tutor prepares your learning plan for the day.",
+    sub: "It reviews your performance from the previous day and adjusts your lessons to focus on areas where you need improvement.",
   },
   {
     time: "09:30",
     label: "Lab",
-    title: "You run a program on a real quantum computer.",
-    sub: "This is not a practice test. It is a real, advanced machine, and you are working on it live with your classmates in Seoul.",
+    title: "You work on a real quantum computer.",
+    sub: "This is a live session, not a simulation. You collaborate with students from other countries while using advanced technology in real time.",
   },
   {
     time: "11:00",
     label: "Studio",
-    title: "A massive 3D hologram of a human heart fills the room.",
-    sub: "You can reach out and rotate it with your hands to study it closely. The AI explains the parts to you, and you don't even need a VR headset.",
+    title: "A 3D hologram of a human heart appears in the classroom.",
+    sub: "You can interact with it by rotating and examining different parts, while the AI provides clear explanations without the need for special equipment.",
   },
   {
     time: "13:00",
     label: "Workshop",
-    title: "You build your very first robotic part in Week 3.",
-    sub: "With the help of your smart AI partner and our advanced tools, you create real, working hardware even if you have never built anything before.",
+    title: "You begin building your first robotic component.",
+    sub: "With the guidance of AI tools and modern equipment, you create functional hardware even as a beginner.",
   },
   {
     time: "15:30",
     label: "Research",
-    title: "Your science project gets chosen for a real science journal.",
-    sub: "The biology experiment you ran in the lab last month created something entirely new, and the school helps you share it with the world.",
+    title: "Your project is selected for publication.",
+    sub: "Your experiment leads to meaningful results, and the school supports you in presenting your work to a wider audience.",
   },
   {
     time: "19:00",
-    label: "Night",
-    title: "You stop a live cyber attack in the digital arena.",
-    sub: "You are competing safely against six other schools. When you fix the problem, your score instantly pops up on the global leaderboard.",
+    label: "Evening",
+    title: "You participate in a cybersecurity challenge.",
+    sub: "You compete safely with other schools to solve real-world problems, and your performance is displayed on a global leaderboard.",
   },
 ];
 
@@ -1224,8 +1224,7 @@ function CTASection() {
             margin: "0 auto 56px",
           }}
         >
-          No prerequisites. No gatekeeping. Just curiosity and a willingness to
-          build things that haven&apos;t been built before.
+          No prior experience needed. Just curiosity and the desire to build something new.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
