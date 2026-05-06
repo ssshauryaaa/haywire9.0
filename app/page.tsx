@@ -16,52 +16,52 @@ import { useRouter } from "next/navigation";
 
 // ─── CUSTOM CURSOR ────────────────────────────────────────────────────────────
 
-function CustomCursor() {
-  const x = useMotionValue(-100),
-    y = useMotionValue(-100);
-  const sx = useSpring(x, { stiffness: 220, damping: 24 });
-  const sy = useSpring(y, { stiffness: 220, damping: 24 });
-  const [big, setBig] = useState(false);
-  useEffect(() => {
-    const mv = (e: MouseEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
-    };
-    const ov = (e: MouseEvent) => {
-      if ((e.target as Element)?.closest("button,a,[data-cursor]"))
-        setBig(true);
-    };
-    const ou = (e: MouseEvent) => {
-      if ((e.target as Element)?.closest("button,a,[data-cursor]"))
-        setBig(false);
-    };
-    window.addEventListener("mousemove", mv);
-    window.addEventListener("mouseover", ov);
-    window.addEventListener("mouseout", ou);
-    return () => {
-      window.removeEventListener("mousemove", mv);
-      window.removeEventListener("mouseover", ov);
-      window.removeEventListener("mouseout", ou);
-    };
-  }, [x, y]);
-  return (
-    <motion.div
-      style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%" }}
-      className="fixed pointer-events-none z-[999] hidden md:block mix-blend-difference"
-    >
-      <motion.div
-        animate={{ scale: big ? 3 : 1 }}
-        transition={{ duration: 0.22 }}
-        style={{
-          width: 10,
-          height: 10,
-          borderRadius: "50%",
-          background: "white",
-        }}
-      />
-    </motion.div>
-  );
-}
+// function CustomCursor() {
+//   const x = useMotionValue(-100),
+//     y = useMotionValue(-100);
+//   const sx = useSpring(x, { stiffness: 220, damping: 24 });
+//   const sy = useSpring(y, { stiffness: 220, damping: 24 });
+//   const [big, setBig] = useState(false);
+//   useEffect(() => {
+//     const mv = (e: MouseEvent) => {
+//       x.set(e.clientX);
+//       y.set(e.clientY);
+//     };
+//     const ov = (e: MouseEvent) => {
+//       if ((e.target as Element)?.closest("button,a,[data-cursor]"))
+//         setBig(true);
+//     };
+//     const ou = (e: MouseEvent) => {
+//       if ((e.target as Element)?.closest("button,a,[data-cursor]"))
+//         setBig(false);
+//     };
+//     window.addEventListener("mousemove", mv);
+//     window.addEventListener("mouseover", ov);
+//     window.addEventListener("mouseout", ou);
+//     return () => {
+//       window.removeEventListener("mousemove", mv);
+//       window.removeEventListener("mouseover", ov);
+//       window.removeEventListener("mouseout", ou);
+//     };
+//   }, [x, y]);
+//   return (
+//     <motion.div
+//       style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%" }}
+//       className="fixed pointer-events-none z-[999] hidden md:block mix-blend-difference"
+//     >
+//       <motion.div
+//         animate={{ scale: big ? 3 : 1 }}
+//         transition={{ duration: 0.22 }}
+//         style={{
+//           width: 10,
+//           height: 10,
+//           borderRadius: "50%",
+//           background: "white",
+//         }}
+//       />
+//     </motion.div>
+//   );
+// }
 
 // ─── NOISE OVERLAY ────────────────────────────────────────────────────────────
 
@@ -1647,11 +1647,11 @@ export default function Home() {
   return (
     <div
       className="relative min-h-screen text-white overflow-x-hidden"
-      style={{ background: "#0A0A0A", cursor: "none" }}
+      style={{ background: "#0A0A0A" }}
     >
-      <style>{`* { cursor: none !important; } ::-webkit-scrollbar { display: none; }`}</style>
+      <style>{`::-webkit-scrollbar { display: none; }`}</style>
 
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <NoiseOverlay />
       <MouseGlow />
 
