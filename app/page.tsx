@@ -477,7 +477,7 @@ function ComparisonSection() {
               color: "rgba(255,255,255,0.18)",
             }}
           >
-            Education in 2024
+            Education in 2026
           </span>
           <div />
           <span
@@ -1168,7 +1168,7 @@ function CTASection() {
             marginBottom: "40px",
           }}
         >
-          Class of 2049 · Applications Open
+          Class of 2040 · Applications Open
         </div>
         <div style={{ overflow: "hidden", marginBottom: "6px" }}>
           <motion.h2
