@@ -83,7 +83,7 @@ const facilities = [
   {
     id: "robotics-bay",
     number: "04",
-    name: "Robotics  Bay",
+    name: "Robotics Bay",
     tagline: "Create and test real machines",
     icon: Cpu,
     desc: "An advanced workspace where students design, build, and test robotic systems, gaining practical engineering experience from an early stage.",

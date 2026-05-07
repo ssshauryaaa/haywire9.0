@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
+
 
 const steps = [
   {
@@ -102,7 +102,7 @@ const pillars = [
   { icon: Shield, label: "Safe and Responsible AI", desc: "Technology designed to be secure, reliable, and ethical" },
 ];
 
-// ─── THREE.JS VISUALS ─────────────────────────────────────────────────────────
+
 
 function useStepScene(id: string) {
   const ref = useRef<HTMLDivElement>(null);
@@ -137,9 +137,9 @@ function useStepScene(id: string) {
     let frame = 0;
     let animId: number;
 
-    // ── Visuals ───────────────────────────────────────────
+    
     if (id === "neural-net") {
-      // Nodes and connections like a brain
+      
       const nodes: THREE.Vector3[] = [];
       for (let i = 0; i < 40; i++) {
         nodes.push(new THREE.Vector3(
@@ -163,7 +163,7 @@ function useStepScene(id: string) {
           group.add(new THREE.Line(g, lm));
         }
       }));
-      // Pulse rings
+      
       for (let i = 0; i < 3; i++) {
         const rg = new THREE.TorusGeometry(0.8 + i * 0.5, 0.008, 8, 60);
         const rm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.12 - i * 0.03 });
@@ -174,8 +174,7 @@ function useStepScene(id: string) {
     }
 
     else if (id === "grid-pulse") {
-      // Undulating grid plane
-      const res = 28;
+const res = 28;
       const geo = new THREE.PlaneGeometry(6, 5, res, res);
       const mat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.12 });
       const mesh = new THREE.Mesh(geo, mat);
@@ -184,7 +183,7 @@ function useStepScene(id: string) {
       (group as any).__geo = geo;
       (group as any).__res = res;
 
-      // Floating cubes
+      
       for (let i = 0; i < 14; i++) {
         const sg = new THREE.BoxGeometry(0.08, 0.08, 0.08);
         const sm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
@@ -195,7 +194,7 @@ function useStepScene(id: string) {
     }
 
     else if (id === "particle-field") {
-      // Explosion of particles orbiting a core
+      
       const count = 200;
       const pos = new Float32Array(count * 3);
       for (let i = 0; i < count; i++) {
@@ -210,18 +209,18 @@ function useStepScene(id: string) {
       pg.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       const pm = new THREE.PointsMaterial({ color: 0xffffff, size: 0.04, transparent: true, opacity: 0.7 });
       group.add(new THREE.Points(pg, pm));
-      // Core
+      
       const cg = new THREE.IcosahedronGeometry(0.35, 1);
       const cm = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.45 });
       group.add(new THREE.Mesh(cg, cm));
     }
 
     else if (id === "globe") {
-      // Wireframe sphere + orbiting dots
+      
       const sg = new THREE.SphereGeometry(1.6, 24, 16);
       const sm = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 });
       group.add(new THREE.Mesh(sg, sm));
-      // Latitude rings
+      
       for (let lat = -60; lat <= 60; lat += 30) {
         const r = Math.cos((lat * Math.PI) / 180) * 1.6;
         const y = Math.sin((lat * Math.PI) / 180) * 1.6;
@@ -232,7 +231,7 @@ function useStepScene(id: string) {
         ring.position.y = y;
         group.add(ring);
       }
-      // City dots
+      
       for (let i = 0; i < 20; i++) {
         const theta = Math.random() * Math.PI * 2;
         const phi = (Math.random() * 1.2 - 0.6);
@@ -266,7 +265,7 @@ function useStepScene(id: string) {
       (group as any).__isWave = true;
     }
 
-    // ── Animate ───────────────────────────────────────────
+
     const animate = () => {
       animId = requestAnimationFrame(animate);
       frame++;
@@ -306,7 +305,7 @@ function useStepScene(id: string) {
 
       if (id === "globe") {
         group.rotation.y += 0.004;
-        // Pulse city dots
+        
         group.children.forEach((c, i) => {
           if (c instanceof THREE.Mesh && i > 5) {
             (c.material as THREE.MeshBasicMaterial).opacity =
@@ -355,7 +354,6 @@ function useStepScene(id: string) {
   return ref;
 }
 
-// ─── AMBIENT BACKGROUND ────────────────────────────────────────────────────────
 
 function AmbientCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -397,7 +395,6 @@ function AmbientCanvas() {
   return <canvas ref={ref} className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} />;
 }
 
-// ─── HERO 3D SCENE ─────────────────────────────────────────────────────────────
 
 function HeroScene() {
   const ref = useRef<HTMLDivElement>(null);
@@ -414,14 +411,14 @@ function HeroScene() {
     const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 500);
     camera.position.set(0, 0, 7);
 
-    // Concentric dodecahedra
+    
     for (let i = 0; i < 4; i++) {
       const g = new THREE.DodecahedronGeometry(1.5 + i * 0.9, 0);
       const m = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.04 - i * 0.008 });
       scene.add(new THREE.Mesh(g, m));
     }
 
-    // DNA-like double helix
+    
     const helixGroup = new THREE.Group();
     scene.add(helixGroup);
     const helixPts1: THREE.Vector3[] = [], helixPts2: THREE.Vector3[] = [];
@@ -436,7 +433,7 @@ function HeroScene() {
       helixGroup.add(new THREE.Line(g, m));
     });
 
-    // Star field
+    
     const starPos = new Float32Array(500 * 3);
     for (let i = 0; i < 500 * 3; i++) starPos[i] = (Math.random() - 0.5) * 30;
     const starGeo = new THREE.BufferGeometry();
@@ -476,7 +473,6 @@ function HeroScene() {
   return <div ref={ref} className="absolute inset-0" style={{ zIndex: 0 }} />;
 }
 
-// ─── STEP CARD ──────────────────────────────────────────────────────────────────
 
 function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   const [open, setOpen] = useState(false);
@@ -627,7 +623,6 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   );
 }
 
-// ─── PILLAR GRID ───────────────────────────────────────────────────────────────
 
 function PillarGrid() {
   const ref = useRef<HTMLDivElement>(null);
@@ -659,7 +654,6 @@ function PillarGrid() {
   );
 }
 
-// ─── TIMELINE NAV ─────────────────────────────────────────────────────────────
 
 function TimelineNav({ active, onSelect }: { active: number; onSelect: (i: number) => void }) {
   return (
@@ -683,7 +677,6 @@ function TimelineNav({ active, onSelect }: { active: number; onSelect: (i: numbe
   );
 }
 
-// ─── MAIN COMPONENT ────────────────────────────────────────────────────────────
 
 export default function HowItWorks() {
   const router = useRouter()
@@ -707,14 +700,14 @@ export default function HowItWorks() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
 
-      {/* ── Fixed BG layers ── */}
+      
       <AmbientCanvas />
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1, background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(0,0,0,0.75) 100%)" }} />
 
       <div className="relative" style={{ zIndex: 10 }}>
 
-        {/* ═══ HERO ════════════════════════════════════════════════════ */}
+        
         <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
           <HeroScene />
           <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 65% 65% at 50% 50%, transparent 25%, rgba(0,0,0,0.85) 100%)", zIndex: 1 }} />
@@ -722,7 +715,7 @@ export default function HowItWorks() {
           <motion.div style={{ y: heroY, opacity: heroOpacity, zIndex: 2 }} className="relative text-center px-6 max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}>
 
-              {/* Badge */}
+              
               <div className="inline-flex items-center gap-3 border rounded-full px-5 py-2 mb-10" style={{ borderColor: "rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px)" }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 <span className="text-[9px] tracking-[0.35em] uppercase" style={{ color: "rgba(255,255,255,0.45)" }}>Smart School 2040</span>
@@ -739,7 +732,7 @@ export default function HowItWorks() {
                 Five phases working together in a continuous cycle. This is a new way of learning, built for the needs of future students.
               </p>
 
-              {/* Step count pills */}
+              
               <div className="flex items-center justify-center gap-2 flex-wrap mb-12">
                 {steps.map((s, i) => (
                   <motion.div
@@ -774,10 +767,10 @@ export default function HowItWorks() {
           </motion.div>
         </section>
 
-        {/* ═══ CONTENT ═════════════════════════════════════════════════ */}
+        
         <div className="mx-auto" style={{ maxWidth: "1320px", padding: "0 clamp(16px,5vw,80px)" }}>
 
-          {/* ── INTRO SECTION ── */}
+          
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -808,7 +801,7 @@ export default function HowItWorks() {
             </div>
           </motion.div>
 
-          {/* ── TIMELINE NAV ── */}
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -821,15 +814,15 @@ export default function HowItWorks() {
             <TimelineNav active={activeStep} onSelect={scrollToStep} />
           </motion.div>
 
-          {/* ── CONNECTION LINE ── */}
+          
           <div className="relative">
-            {/* Vertical spine */}
+            
             <div
               className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px pointer-events-none"
               style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.07) 10%, rgba(255,255,255,0.07) 90%, transparent)", zIndex: 1 }}
             />
 
-            {/* Step cards */}
+            
             <div className="flex flex-col gap-5 py-6">
               {steps.map((step, i) => (
                 <div
@@ -837,7 +830,7 @@ export default function HowItWorks() {
                   ref={el => { stepRefs.current[i] = el; }}
                   className="scroll-mt-20"
                 >
-                  {/* Connector node */}
+                  
                   <div className="hidden md:flex items-center justify-center my-3" style={{ zIndex: 2, position: "relative" }}>
                     <div
                       className="w-8 h-8 rounded-full flex items-center justify-center font-black text-[10px]"
@@ -857,7 +850,7 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          {/* ── PILLARS ── */}
+          
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -877,7 +870,7 @@ export default function HowItWorks() {
             <PillarGrid />
           </motion.div>
 
-          {/* ── LOOP CALLOUT ── */}
+          
           <motion.div
             variants={fadeUp}
             initial="hidden"
