@@ -34,8 +34,8 @@ import { useRouter } from "next/navigation";
 
 const stats = [
   {
-    num: 2040,
-    suffix: "",
+    num: 20,
+    suffix: "40",
     label: "Est. Year",
     icon: Award,
     detail: "Founded as a fully digital-native institution",
