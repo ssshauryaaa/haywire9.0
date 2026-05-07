@@ -78,7 +78,7 @@ const pillars = [
     icon: Cog,
     desc: "Students gain hands-on experience by building and working with robotic systems.",
     longDesc:
-      "Students do more than just study theory—they apply it in real situations. They work with robots and automated systems to solve problems and build projects. Basic robotics is part of the curriculum, helping students connect classroom learning with real-world applications.",
+      "Students do more than just study theory, they apply it in real situations. They work with robots and automated systems to solve problems and build projects. Basic robotics is part of the curriculum, helping students connect classroom learning with real-world applications.",
   },
   {
     num: "03",

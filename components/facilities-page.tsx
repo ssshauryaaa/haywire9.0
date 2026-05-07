@@ -85,7 +85,7 @@ const FACILITIES = [
     id: "bio",
     index: 5,
     code: "BSL-06",
-    name: "BioTechnology\nLab",
+    name: "BioTech\nLab",
     short: "BioSynth",
     tagline: "Innovation in life sciences",
     body: "A certified biotechnology lab where students work with modern biological tools under strict safety systems guided by AI.",
