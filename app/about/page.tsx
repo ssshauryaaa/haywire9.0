@@ -129,17 +129,17 @@ const milestones = [
 const testimonials = [
   {
     text: "The AI system quickly identified my learning gaps and helped me improve even before I realized my mistakes. It felt like having a personal mentor available at all times.",
-    author: "Priya M., Class of '44",
+    author: "Priya M., Class of '38",
     role: "Lead AI Architect, DeepMind",
   },
   {
     text: "I built my first drone prototype in the lab, and it later grew into a funded startup. This school goes beyond teaching theory—it helps turn ideas into real projects.",
-    author: "Kai L., Class of '45",
+    author: "Kai L., Class of '39",
     role: "Founder & CEO, AerialSense",
   },
   {
     text: "Learning with students from different countries in real time changed my perspective. It helped me better understand global issues and think beyond borders.",
-    author: "Sofia R., Class of '46",
+    author: "Sofia R., Class of '39",
     role: "UN Youth Ambassador for Tech Policy",
   },
 ];
@@ -1321,7 +1321,7 @@ export default function AboutPage() {
               className="text-sm font-light mb-10"
               style={{ color: "rgba(255,255,255,0.35)" }}
             >
-              Applications open for Class of 2049.
+              Applications open for Class of 2040.
             </p>
             <button
               onClick={() => router.push("/contact")}
