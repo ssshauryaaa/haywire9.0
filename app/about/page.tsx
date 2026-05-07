@@ -429,8 +429,6 @@ function NeuralGlobe() {
   );
 }
 
-// ─── ANIMATED BACKGROUND CANVAS ──────────────────────────────────────────────
-
 function BackgroundCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -528,7 +526,6 @@ function BackgroundCanvas() {
   );
 }
 
-// ─── TESTIMONIAL CAROUSEL ─────────────────────────────────────────────────────
 
 function TestimonialCarousel() {
   const [index, setIndex] = useState(0);
@@ -624,25 +621,22 @@ function TestimonialCarousel() {
   );
 }
 
-// ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 
 export default function AboutPage() {
   const pageRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const [countersActive, setCountersActive] = useState(false);
 
-  // Scroll-based parallax
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 600], [0, -80]);
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.3]);
 
-  // Activate counters when stats section enters view
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
   useEffect(() => {
     if (statsInView) setCountersActive(true);
   }, [statsInView]);
 
-  // ── Shared animation variants
+
   const fadeUp = {
     hidden: { opacity: 0, y: 48 },
     visible: {
@@ -650,7 +644,7 @@ export default function AboutPage() {
       y: 0,
       transition: {
         duration: 0.75,
-        ease: [0.22, 1, 0.36, 1] as const, // ✅ tuple of 4 numbers
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -670,7 +664,7 @@ export default function AboutPage() {
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const, // ✅ tuple of 4 numbers
+        ease: [0.22, 1, 0.36, 1] as const, 
       },
     },
   };
@@ -693,10 +687,10 @@ export default function AboutPage() {
       ref={pageRef}
       className="relative min-h-screen bg-black text-white overflow-x-hidden"
     >
-      {/* ── Layered background ─────────────────────────────────── */}
+      
       <BackgroundCanvas />
 
-      {/* Grid pattern */}
+
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -707,7 +701,7 @@ export default function AboutPage() {
         }}
       />
 
-      {/* Scanlines */}
+      
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -717,7 +711,7 @@ export default function AboutPage() {
         }}
       />
 
-      {/* Vignette */}
+      
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -727,7 +721,7 @@ export default function AboutPage() {
         }}
       />
 
-      {/* ── Content ────────────────────────────────────────────── */}
+      
       <div className="relative" style={{ zIndex: 10 }}>
         <div
           className="mx-auto"
@@ -737,7 +731,7 @@ export default function AboutPage() {
             paddingRight: "clamp(20px, 5vw, 80px)",
           }}
         >
-          {/* ════ HERO ══════════════════════════════════════════ */}
+          
           <motion.section
             style={{ y: heroY, opacity: heroOpacity }}
             className="pt-32 pb-24 text-center"
@@ -748,7 +742,7 @@ export default function AboutPage() {
               animate="visible"
               className="flex flex-col items-center"
             >
-              {/* Pill badge */}
+              
               <div
                 className="inline-flex items-center gap-3 border border-white/12 rounded-full px-5 py-2 mb-10 backdrop-blur-md"
                 style={{ background: "rgba(255,255,255,0.03)" }}
@@ -759,7 +753,7 @@ export default function AboutPage() {
                 </span>
               </div>
 
-              {/* Headline */}
+              
               <h1
                 className="font-black tracking-tighter leading-none mb-8"
                 style={{
@@ -780,7 +774,7 @@ export default function AboutPage() {
                 </span>
               </h1>
 
-              {/* Divider */}
+              
               <div
                 className="w-20 h-px mb-8"
                 style={{ background: "rgba(255,255,255,0.2)" }}
@@ -793,7 +787,7 @@ export default function AboutPage() {
                 A fully immersive, AI-driven campus where every student develops as a creator, critical thinker, and leader—supported by advanced technologies designed to enhance learning.
               </p>
 
-              {/* CTAs */}
+              
               <div className="flex gap-4 flex-wrap justify-center">
                 <button
                   onClick={() => router.push("/features")}
@@ -818,47 +812,10 @@ export default function AboutPage() {
             </motion.div>
           </motion.section>
 
-          {/* ════ 3D NEURAL GLOBE ═══════════════════════════════ */}
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="mb-6"
-          >
-            <div
-              className="relative border border-white/8 rounded-3xl overflow-hidden"
-              style={{ background: "rgba(255,255,255,0.01)" }}
-            >
-              {/* Corner decorations */}
-              <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-white/20 rounded-tl-md pointer-events-none" />
-              <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-white/20 rounded-tr-md pointer-events-none" />
-              <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-white/20 rounded-bl-md pointer-events-none" />
-              <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-white/20 rounded-br-md pointer-events-none" />
+          
+      
 
-              {/* Live indicator */}
-              <div
-                className="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10"
-                style={{
-                  background: "rgba(0,0,0,0.6)",
-                  backdropFilter: "blur(12px)",
-                }}
-              >
-                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-                <span className="text-[8px] tracking-[0.3em] uppercase text-white/50">
-                  Holographic Neural Campus — Interactive
-                </span>
-              </div>
-
-              <NeuralGlobe />
-            </div>
-          </motion.div>
-
-          <p className="text-center text-[9px] tracking-[0.3em] uppercase text-white/20 mb-24">
-            Move mouse over globe to interact
-          </p>
-
-          {/* ════ STATS ═════════════════════════════════════════ */}
+          
           <motion.div
             ref={statsRef}
             variants={stagger}
@@ -878,7 +835,6 @@ export default function AboutPage() {
                   transition: "all 0.35s ease",
                 }}
               >
-                {/* Hover shimmer */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500"
                   style={{
@@ -922,7 +878,7 @@ export default function AboutPage() {
             ))}
           </motion.div>
 
-          {/* ════ MISSION STATEMENT ═════════════════════════════ */}
+          
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -961,7 +917,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          {/* ════ PILLARS ═══════════════════════════════════════ */}
+          
           <motion.section
             variants={fadeUp}
             initial="hidden"
@@ -1028,7 +984,7 @@ export default function AboutPage() {
                       transition: "background-color 0.3s ease",
                     }}
                   >
-                    {/* Ghost number */}
+                    
                     <span
                       className="absolute top-6 right-8 font-black pointer-events-none"
                       style={{
@@ -1040,7 +996,7 @@ export default function AboutPage() {
                       {p.num}
                     </span>
 
-                    {/* Icon */}
+                    
                     <div
                       className="w-12 h-12 rounded-xl border flex items-center justify-center mb-7 transition-all duration-300 group-hover:border-white/35"
                       style={{
@@ -1067,7 +1023,7 @@ export default function AboutPage() {
                       {p.longDesc}
                     </p>
 
-                    {/* Bottom border accent on hover */}
+                    
                     <div
                       className="absolute bottom-0 left-0 h-px w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
                       style={{
@@ -1081,7 +1037,7 @@ export default function AboutPage() {
             </div>
           </motion.section>
 
-          {/* ════ TIMELINE ══════════════════════════════════════ */}
+          
           <motion.section
             variants={fadeUp}
             initial="hidden"
@@ -1107,9 +1063,9 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            {/* Vertical timeline */}
+            
             <div className="relative">
-              {/* Center line */}
+              
               <div
                 className="absolute hidden md:block top-0 bottom-0"
                 style={{
