@@ -14,7 +14,7 @@
     z-index: 9999;
 }
 
-/* The glowing spinning rings */
+
 .loaderCore {
     position: relative;
     width: 120px;
@@ -35,9 +35,7 @@
     top: 0;
     left: 0;
     border-top-color: #66FCF1;
-    /* Cyber Cyan */
     border-bottom-color: #B829EA;
-    /* Neon Purple */
     animation: spin 1.5s linear infinite;
 }
 
@@ -60,7 +58,6 @@
     animation: spin 0.8s linear infinite;
 }
 
-/* Tech typography */
 .loaderTextContainer {
     display: flex;
     align-items: center;
@@ -70,7 +67,6 @@
 .loaderText {
     color: #66FCF1;
     font-family: 'Orbitron', sans-serif;
-    /* Fallback to sans-serif if Orbitron isn't loaded */
     font-size: 1.2rem;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -93,7 +89,7 @@
     animation-delay: 0.4s;
 }
 
-/* --- ANIMATIONS --- */
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
