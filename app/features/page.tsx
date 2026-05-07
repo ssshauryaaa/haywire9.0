@@ -53,7 +53,7 @@ const facilities = [
   {
     id: "neural-studio",
     number: "02",
-    name: "Neural Interface Studio",
+    name: "Neural Studio",
     tagline: "Connecting the human mind and technology",
     icon: Brain,
     desc: "A specialized lab where students explore brain-computer interaction using advanced neural monitoring and response systems.",
@@ -68,7 +68,7 @@ const facilities = [
   {
     id: "holo-arena",
     number: "03",
-    name: "Holographic Learning Arena",
+    name: "Holographic Arena",
     tagline: "Experience learning in three dimensions",
     icon: Eye,
     desc: "A large-scale immersive space that displays realistic 3D holograms, allowing students to explore complex concepts visually without additional devices.",
@@ -83,7 +83,7 @@ const facilities = [
   {
     id: "robotics-bay",
     number: "04",
-    name: "Robotics Development Bay",
+    name: "Robotics  Bay",
     tagline: "Create and test real machines",
     icon: Cpu,
     desc: "An advanced workspace where students design, build, and test robotic systems, gaining practical engineering experience from an early stage.",
