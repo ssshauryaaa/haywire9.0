@@ -33,7 +33,6 @@ import {
 
 import { useRouter } from "next/navigation";
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
 
 const facilities = [
   {
@@ -165,7 +164,6 @@ const stats = [
   { value: "∞", label: "Computing Resources", desc: "Full access to cloud systems" },
 ];
 
-// ─── THREE.JS SCENES ─────────────────────────────────────────────────────────
 
 function useThreeScene(id: string) {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -186,7 +184,6 @@ function useThreeScene(id: string) {
     const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 500);
     camera.position.set(0, 0, 4);
 
-    // Mouse tracking
     let mX = 0,
       mY = 0;
     const onMM = (e: MouseEvent) => {
@@ -201,9 +198,7 @@ function useThreeScene(id: string) {
     const group = new THREE.Group();
     scene.add(group);
 
-    // ── Scene variants ──────────────────────────────────
     if (id === "quantum") {
-      // Quantum: spinning lattice of nodes
       const nodePositions: [number, number, number][] = [];
       for (let x = -2; x <= 2; x++)
         for (let y = -2; y <= 2; y++)
@@ -222,7 +217,6 @@ function useThreeScene(id: string) {
         mesh.position.set(x * 0.7, y * 0.7, z * 0.7);
         group.add(mesh);
       });
-      // Connecting lines
       const lm = new THREE.LineBasicMaterial({
         color: 0xffffff,
         transparent: true,
@@ -242,7 +236,6 @@ function useThreeScene(id: string) {
         }),
       );
     } else if (id === "neural") {
-      // Neural: flowing wave mesh
       const res = 24;
       const geo = new THREE.PlaneGeometry(5, 5, res, res);
       const mat = new THREE.MeshBasicMaterial({
@@ -254,7 +247,6 @@ function useThreeScene(id: string) {
       const mesh = new THREE.Mesh(geo, mat);
       mesh.rotation.x = -Math.PI / 3;
       group.add(mesh);
-      // Floating neurons
       for (let i = 0; i < 30; i++) {
         const sg = new THREE.SphereGeometry(0.04 + Math.random() * 0.06, 6, 6);
         const sm = new THREE.MeshBasicMaterial({
@@ -270,11 +262,9 @@ function useThreeScene(id: string) {
         );
         group.add(s);
       }
-      // Store wave ref
       (group as any).__waveGeo = geo;
       (group as any).__waveRes = res;
     } else if (id === "holo") {
-      // Holo: rotating rings
       for (let i = 0; i < 6; i++) {
         const r = 0.6 + i * 0.35;
         const g = new THREE.TorusGeometry(r, 0.006, 8, 80);
@@ -288,7 +278,6 @@ function useThreeScene(id: string) {
         mesh.rotation.y = (i * Math.PI) / 7;
         group.add(mesh);
       }
-      // Center glow
       const cg = new THREE.SphereGeometry(0.12, 12, 12);
       const cm = new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -297,7 +286,6 @@ function useThreeScene(id: string) {
       });
       group.add(new THREE.Mesh(cg, cm));
     } else if (id === "robotics") {
-      // Robotics: mechanical arm segments
       for (let i = 0; i < 5; i++) {
         const h = 0.5 + Math.random() * 0.7;
         const g = new THREE.CylinderGeometry(0.05, 0.08, h, 8);
@@ -314,7 +302,6 @@ function useThreeScene(id: string) {
         );
         mesh.rotation.z = (Math.random() - 0.5) * 0.8;
         group.add(mesh);
-        // Joint sphere
         const js = new THREE.SphereGeometry(0.1, 8, 8);
         const jm = new THREE.MeshBasicMaterial({
           color: 0xffffff,
@@ -325,7 +312,6 @@ function useThreeScene(id: string) {
         jmesh.position.copy(mesh.position);
         group.add(jmesh);
       }
-      // Ground grid
       const gg = new THREE.GridHelper(6, 12, 0x333333, 0x1a1a1a);
       gg.position.y = -1.8;
       gg.material = new THREE.LineBasicMaterial({
@@ -335,7 +321,6 @@ function useThreeScene(id: string) {
       });
       group.add(gg);
     } else if (id === "space") {
-      // Space: star field + rotating rings
       const starCount = 300;
       const pos = new Float32Array(starCount * 3);
       for (let i = 0; i < starCount * 3; i++)
@@ -349,14 +334,12 @@ function useThreeScene(id: string) {
         opacity: 0.6,
       });
       group.add(new THREE.Points(sg, sm));
-      // Planet
       const pg = new THREE.SphereGeometry(0.8, 24, 24);
       const pm = new THREE.MeshBasicMaterial({
         color: 0x111111,
         wireframe: true,
       });
       group.add(new THREE.Mesh(pg, pm));
-      // Ring
       const rg = new THREE.TorusGeometry(1.3, 0.03, 6, 80);
       const rm = new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -367,7 +350,6 @@ function useThreeScene(id: string) {
       ring.rotation.x = Math.PI / 3;
       group.add(ring);
     } else if (id === "bio") {
-      // Bio: double helix DNA
       const turns = 3;
       const pts = 120;
       const strand1: THREE.Vector3[] = [],
@@ -395,7 +377,6 @@ function useThreeScene(id: string) {
         });
         group.add(new THREE.Line(g, m));
       });
-      // Rungs
       for (let i = 0; i < pts; i += 6) {
         const rg = new THREE.BufferGeometry().setFromPoints([
           strand1[i],
@@ -416,7 +397,6 @@ function useThreeScene(id: string) {
         });
       }
     } else if (id === "cyber") {
-      // Cyber: hex grid
       for (let i = -3; i <= 3; i++)
         for (let j = -3; j <= 3; j++) {
           const g = new THREE.RingGeometry(0.25, 0.28, 6);
@@ -434,7 +414,6 @@ function useThreeScene(id: string) {
           );
           group.add(mesh);
         }
-      // Scanning line
       const sg = new THREE.PlaneGeometry(5, 0.03);
       const sm = new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -445,7 +424,6 @@ function useThreeScene(id: string) {
       group.add(scanLine);
       (group as any).__scanLine = scanLine;
     } else if (id === "zero-g") {
-      // Zero-G: floating debris / satellite parts
       const parts: THREE.Mesh[] = [];
       for (let i = 0; i < 22; i++) {
         const geos = [
@@ -481,12 +459,10 @@ function useThreeScene(id: string) {
       (group as any).__parts = parts;
     }
 
-    // ── Animate ──────────────────────────────────────────
     const animate = () => {
       animId = requestAnimationFrame(animate);
       frame++;
 
-      // Mouse-tracked rotation
       group.rotation.y += (mX * 0.4 - group.rotation.y) * 0.05;
       group.rotation.x += (-mY * 0.2 - group.rotation.x) * 0.05;
 
@@ -591,7 +567,6 @@ function useThreeScene(id: string) {
   return mountRef;
 }
 
-// ─── FACILITY CARD ────────────────────────────────────────────────────────────
 
 function FacilityCard({
   f,
@@ -620,7 +595,6 @@ function FacilityCard({
       onClick={() => setExpanded(!expanded)}
       whileHover={{ borderColor: "rgba(255,255,255,0.22)" }}
     >
-      {/* Hover gradient */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
@@ -629,7 +603,6 @@ function FacilityCard({
         }}
       />
 
-      {/* Top scan line on hover */}
       <div
         className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{
@@ -639,12 +612,10 @@ function FacilityCard({
       />
 
       <div className="grid md:grid-cols-2 gap-0">
-        {/* ── Left: Info ── */}
         <div
           className="p-10 md:p-12 flex flex-col justify-between"
           style={{ borderRight: "1px solid rgba(255,255,255,0.07)" }}
         >
-          {/* Header */}
           <div>
             <div className="flex items-start justify-between mb-8">
               <div className="flex items-center gap-4">
@@ -707,7 +678,6 @@ function FacilityCard({
             </p>
           </div>
 
-          {/* Specs */}
           <AnimatePresence>
             {expanded && (
               <motion.div
@@ -749,7 +719,6 @@ function FacilityCard({
             )}
           </AnimatePresence>
 
-          {/* CTA */}
           <div className="flex items-center gap-2 mt-8">
             <span
               className="text-xs font-semibold transition-colors duration-200 group-hover:text-white"
@@ -764,7 +733,6 @@ function FacilityCard({
           </div>
         </div>
 
-        {/* ── Right: 3D Scene ── */}
         <div
           className="relative overflow-hidden"
           style={{ minHeight: "320px", background: "rgba(0,0,0,0.3)" }}
@@ -773,7 +741,6 @@ function FacilityCard({
             ref={mountRef}
             style={{ width: "100%", height: "100%", minHeight: "320px" }}
           />
-          {/* Overlay gradient */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -781,7 +748,6 @@ function FacilityCard({
                 "linear-gradient(135deg, rgba(0,0,0,0.3) 0%, transparent 50%)",
             }}
           />
-          {/* Label */}
           <div
             className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full"
             style={{
@@ -803,7 +769,6 @@ function FacilityCard({
   );
 }
 
-// ─── BACKGROUND SCENE ─────────────────────────────────────────────────────────
 
 function HeroScene() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -824,7 +789,6 @@ function HeroScene() {
     const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 1000);
     camera.position.set(0, 0, 8);
 
-    // Large wire sphere
     const sg = new THREE.SphereGeometry(4, 28, 28);
     const sm = new THREE.MeshBasicMaterial({
       color: 0xffffff,
@@ -835,7 +799,6 @@ function HeroScene() {
     const sphere = new THREE.Mesh(sg, sm);
     scene.add(sphere);
 
-    // Icosahedron
     const ig = new THREE.IcosahedronGeometry(2.5, 1);
     const im = new THREE.MeshBasicMaterial({
       color: 0xffffff,
@@ -846,7 +809,6 @@ function HeroScene() {
     const ico = new THREE.Mesh(ig, im);
     scene.add(ico);
 
-    // Ring system
     for (let i = 0; i < 3; i++) {
       const rg = new THREE.TorusGeometry(2.8 + i * 0.8, 0.005, 6, 120);
       const rm = new THREE.MeshBasicMaterial({
@@ -859,7 +821,6 @@ function HeroScene() {
       scene.add(ring);
     }
 
-    // Particles
     const pCount = 600;
     const pPos = new Float32Array(pCount * 3);
     for (let i = 0; i < pCount * 3; i++) pPos[i] = (Math.random() - 0.5) * 24;
@@ -925,7 +886,6 @@ function HeroScene() {
   );
 }
 
-// ─── PARTICLE BACKGROUND ──────────────────────────────────────────────────────
 
 function ParticleCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -958,7 +918,6 @@ function ParticleCanvas() {
         ctx.fillStyle = "rgba(255,255,255,0.25)";
         ctx.fill();
       });
-      // Connect nearby
       for (let i = 0; i < pts.length; i++)
         for (let j = i + 1; j < pts.length; j++) {
           const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
@@ -992,8 +951,6 @@ function ParticleCanvas() {
   );
 }
 
-// ─── MAIN PAGE ────────────────────────────────────────────────────────────────
-
 export default function FacilitiesPage() {
   const router = useRouter();
 
@@ -1010,7 +967,7 @@ export default function FacilitiesPage() {
       y: 0,
       transition: {
         duration: 0.75,
-        ease: [0.22, 1, 0.36, 1] as const, // ✅ add as const
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -1022,7 +979,6 @@ export default function FacilitiesPage() {
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      {/* ── Fixed BG ── */}
       <ParticleCanvas />
       <div
         className="fixed inset-0 pointer-events-none"
@@ -1051,11 +1007,9 @@ export default function FacilitiesPage() {
       />
 
       <div className="relative" style={{ zIndex: 10 }}>
-        {/* ════ HERO ══════════════════════════════════════════ */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
           <HeroScene />
 
-          {/* Vignette */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -1074,7 +1028,6 @@ export default function FacilitiesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Badge */}
               <div
                 className="inline-flex items-center gap-3 border border-white/12 rounded-full px-5 py-2 mb-10"
                 style={{
@@ -1139,7 +1092,6 @@ export default function FacilitiesPage() {
             </motion.div>
           </motion.div>
 
-          {/* Scroll hint */}
           <motion.div
             className="absolute bottom-10 left-1/2 -translate-x-1/2"
             style={{ zIndex: 2 }}
@@ -1173,7 +1125,6 @@ export default function FacilitiesPage() {
           className="mx-auto"
           style={{ maxWidth: "1280px", padding: "0 clamp(20px,5vw,80px)" }}
         >
-          {/* ════ STATS ═════════════════════════════════════ */}
           <motion.div
             ref={statsRef}
             variants={stagger}
@@ -1225,7 +1176,6 @@ export default function FacilitiesPage() {
             ))}
           </motion.div>
 
-          {/* ════ INTRO ═════════════════════════════════════ */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -1275,14 +1225,12 @@ export default function FacilitiesPage() {
             </div>
           </motion.div>
 
-          {/* ════ FACILITY CARDS ════════════════════════════ */}
           <div className="flex flex-col gap-6 mb-32">
             {facilities.map((f, i) => (
               <FacilityCard key={f.id} f={f} index={i} />
             ))}
           </div>
 
-          {/* ════ BOTTOM CTA ════════════════════════════════ */}
           <motion.section
             variants={fadeUp}
             initial="hidden"

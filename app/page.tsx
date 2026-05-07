@@ -78,7 +78,6 @@ function NoiseOverlay() {
   );
 }
 
-// ─── MOUSE GLOW ───────────────────────────────────────────────────────────────
 
 function MouseGlow() {
   const x = useMotionValue(0),
@@ -113,7 +112,7 @@ function MouseGlow() {
   );
 }
 
-// ─── SECTION 1: MARQUEE ───────────────────────────────────────────────────────
+
 
 function MarqueeStatement() {
   const words = [
@@ -158,7 +157,7 @@ function MarqueeStatement() {
   );
 }
 
-// ─── SECTION 2: DAY IN THE LIFE (horizontal drag scroll cards) ────────────────
+
 
 const days = [
   {
@@ -423,7 +422,7 @@ function DayInTheLifeSection() {
   );
 }
 
-// ─── SECTION 3: THEN vs NOW comparison ───────────────────────────────────────
+
 
 const comparisons = [
   {
@@ -548,7 +547,7 @@ function ComparisonSection() {
   );
 }
 
-// ─── SECTION 4: GLOBE ────────────────────────────────────────────────────────
+
 
 function WorldCanvas() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -871,7 +870,6 @@ function GlobalSection() {
   );
 }
 
-// ─── SECTION 5: PRINCIPLES ────────────────────────────────────────────────────
 
 const principles = [
   {
@@ -988,7 +986,7 @@ function PrinciplesSection() {
   );
 }
 
-// ─── SECTION 6: LIVE SIGNAL FEED ─────────────────────────────────────────────
+
 
 function SignalStrip() {
   const ref = useRef<HTMLDivElement>(null);
@@ -1134,7 +1132,6 @@ function SignalStrip() {
   );
 }
 
-// ─── SECTION 7: CTA ───────────────────────────────────────────────────────────
 
 function CTASection() {
   const router = useRouter();
@@ -1293,7 +1290,7 @@ function CTASection() {
   );
 }
 
-// ─── SPLINE LOADER ────────────────────────────────────────────────────────────
+
 
 function LoadingText() {
   const [dots, setDots] = useState("");
@@ -1345,7 +1342,6 @@ function SplineEmbed() {
   const [shouldMount, setShouldMount] = useState(false);
 
   useEffect(() => {
-    // Wait until page is idle before mounting the iframe
     const useIdle = typeof requestIdleCallback !== 'undefined';
     const id = useIdle
       ? requestIdleCallback(() => setShouldMount(true), { timeout: 2000 })
@@ -1380,7 +1376,7 @@ function SplineEmbed() {
         <LoadingText />
       </motion.div>
 
-      {/* Only render iframe after page is idle */}
+      
       {shouldMount && (
         <iframe
           src="https://my.spline.design/hanastarterfile-WE78OsCR6rUGkiUggYdsOkoW-jD9/"
@@ -1395,7 +1391,7 @@ function SplineEmbed() {
   );
 }
 
-// ─── HERO ─────────────────────────────────────────────────────────────────────
+
 
 function HeroSection() {
   const x = useMotionValue(0),
@@ -1435,7 +1431,7 @@ function HeroSection() {
           opacity: 0.6,
         }}
       />
-      {/* Radial vignette */}
+      
       <div
         style={{
           position: "absolute",
@@ -1446,7 +1442,7 @@ function HeroSection() {
             "radial-gradient(ellipse at center, transparent 20%, #0A0A0A 90%)",
         }}
       />
-      {/* Mouse glow */}
+      
       <motion.div
         style={{
           position: "absolute",
@@ -1471,7 +1467,7 @@ function HeroSection() {
         />
       </motion.div>
 
-      {/* Spline embed with loader */}
+      
       <div
         style={{
           position: "absolute",
@@ -1640,7 +1636,7 @@ function HeroSection() {
   );
 }
 
-// ─── ROOT ─────────────────────────────────────────────────────────────────────
+
 
 export default function Home() {
   return (
@@ -1654,7 +1650,7 @@ export default function Home() {
       <NoiseOverlay />
       <MouseGlow />
 
-      {/* Persistent bg grid */}
+      
       <div
         className="fixed inset-0 pointer-events-none"
         style={{

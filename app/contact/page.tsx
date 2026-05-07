@@ -5,7 +5,6 @@
 import { useEffect, useRef, useState, FormEvent } from "react";
 import * as THREE from "three";
 
-// ─── Global CSS ───────────────────────────────────────────────────────────────
 const GlobalStyles = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap');
@@ -43,9 +42,6 @@ const GlobalStyles = () => (
   `}</style>
 );
 
-// ─── Starfield ────────────────────────────────────────────────────────────────
-// FIX: Stars are generated inside useEffect (client-only) to prevent the
-// SSR/client Math.random() mismatch that caused the React hydration error.
 function Starfield() {
   const [stars, setStars] = useState<
     Array<{ id: number; x: number; y: number; s: number; d: number; delay: number }>
@@ -85,7 +81,6 @@ function Starfield() {
   );
 }
 
-// ─── Lamp Bot ─────────────────────────────────────────────────────────────────
 function LampBot() {
   const mountRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -374,7 +369,6 @@ function LampBot() {
   return <div ref={mountRef} style={{ width: "100%", height: "100%", minHeight: "100vh" }} />;
 }
 
-// ─── Field ────────────────────────────────────────────────────────────────────
 function Field({
   label, name, type = "text", value, onChange, placeholder, required, rows,
 }: {
@@ -396,7 +390,6 @@ function Field({
   );
 }
 
-// ─── Glass Submit Button ──────────────────────────────────────────────────────
 function GlassButton({ loading }: { loading: boolean }) {
   const [hover, setHover] = useState(false);
   const [active, setActive] = useState(false);
@@ -443,7 +436,6 @@ function GlassButton({ loading }: { loading: boolean }) {
   );
 }
 
-// ─── Contact Form ─────────────────────────────────────────────────────────────
 function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sending, setSending] = useState(false);
@@ -497,7 +489,6 @@ function ContactForm() {
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ContactPage() {
   return (
     <>
@@ -523,7 +514,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* RIGHT — Form */}
         <div style={{ width: "50%", display: "flex", alignItems: "center", justifyContent: "center", padding: "3rem", position: "relative", zIndex: 2 }}>
           <ContactForm />
         </div>

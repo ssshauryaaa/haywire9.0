@@ -14,7 +14,6 @@ import {
   ArrowUpRight, ArrowDown, X, Crosshair,
 } from "lucide-react";
 
-// ─── FACILITIES DATA ──────────────────────────────────────────────────────────
 
 const FACILITIES = [
   {
@@ -123,13 +122,12 @@ const FACILITIES = [
   },
 ];
 
-// ─── THREE SCENES (one per facility) ─────────────────────────────────────────
+
 
 function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   const add = (obj: THREE.Object3D) => group.add(obj);
 
   if (id === "quantum") {
-    // Spinning lattice of tetrahedra
     for (let i = 0; i < 24; i++) {
       const g = new THREE.TetrahedronGeometry(0.12 + Math.random() * 0.1, 0);
       const m = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.5 });
@@ -141,7 +139,6 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
       mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
       add(mesh);
     }
-    // Orbital ring
     for (let i = 0; i < 3; i++) {
       const rg = new THREE.TorusGeometry(1.6 + i * 0.5, 0.007, 6, 100);
       const rm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.15 - i * 0.04 });
@@ -150,14 +147,12 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
       ring.rotation.y = (i * Math.PI) / 6;
       add(ring);
     }
-    // Core octahedron
     const cg = new THREE.OctahedronGeometry(0.3, 0);
     const cm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
     add(new THREE.Mesh(cg, cm));
   }
 
   else if (id === "neural") {
-    // Dense node web
     const nodes: THREE.Vector3[] = [];
     for (let i = 0; i < 55; i++) {
       const v = new THREE.Vector3((Math.random() - 0.5) * 4, (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 2);
@@ -175,13 +170,11 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   }
 
   else if (id === "holo") {
-    // Nested spinning polyhedra
     [[2.0, 0], [1.4, 1], [0.9, 2]].forEach(([r, d]) => {
       const g = new THREE.IcosahedronGeometry(r, d);
       const m = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.07 + d * 0.04 });
       add(new THREE.Mesh(g, m));
     });
-    // Horizontal scan lines
     for (let y = -1.5; y <= 1.5; y += 0.15) {
       const pts = [new THREE.Vector3(-2.5, y, 0), new THREE.Vector3(2.5, y, 0)];
       const g = new THREE.BufferGeometry().setFromPoints(pts);
@@ -191,7 +184,6 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   }
 
   else if (id === "robotics") {
-    // Articulated arm segments
     const arm = new THREE.Group();
     const joints: THREE.Mesh[] = [];
     let y = -1.5;
@@ -213,18 +205,15 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
     (arm as any).__joints = joints;
     group.add(arm);
     (group as any).__arm = arm;
-    return; // early return, group already added
+    return;
   }
 
   else if (id === "space") {
-    // Stars
     const sp = new Float32Array(400 * 3);
     for (let i = 0; i < 400 * 3; i++) sp[i] = (Math.random() - 0.5) * 16;
     const sg = new THREE.BufferGeometry(); sg.setAttribute("position", new THREE.BufferAttribute(sp, 3));
     add(new THREE.Points(sg, new THREE.PointsMaterial({ color: 0xffffff, size: 0.03, transparent: true, opacity: 0.55 })));
-    // Planet wireframe
     add(new THREE.Mesh(new THREE.SphereGeometry(1.1, 20, 20), new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.08 })));
-    // Saturn ring
     const rg = new THREE.TorusGeometry(1.8, 0.04, 4, 90);
     const rm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 });
     const ring = new THREE.Mesh(rg, rm); ring.rotation.x = Math.PI / 3.5;
@@ -232,7 +221,6 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   }
 
   else if (id === "bio") {
-    // Double helix
     const pts1: THREE.Vector3[] = [], pts2: THREE.Vector3[] = [];
     for (let i = 0; i < 100; i++) {
       const t = (i / 100) * Math.PI * 2 * 2.5;
@@ -255,7 +243,6 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   }
 
   else if (id === "cyber") {
-    // Hex grid
     for (let i = -4; i <= 4; i++) for (let j = -3; j <= 3; j++) {
       const g = new THREE.RingGeometry(0.22, 0.25, 6);
       const m = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.08 + Math.random() * 0.18, side: THREE.DoubleSide });
@@ -263,7 +250,6 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
       mesh.position.set(i * 0.56 + (j % 2) * 0.28, j * 0.50, (Math.random() - 0.5) * 0.4);
       add(mesh);
     }
-    // Binary rain columns (vertical lines)
     for (let x = -2.5; x <= 2.5; x += 0.6) {
       const pts = [new THREE.Vector3(x, -2, 0), new THREE.Vector3(x, 2, 0)];
       const g = new THREE.BufferGeometry().setFromPoints(pts);
@@ -273,7 +259,6 @@ function buildScene(id: string, scene: THREE.Scene, group: THREE.Group) {
   }
 
   else if (id === "zerog") {
-    // Floating debris parts
     const parts: THREE.Mesh[] = [];
     const geos = () => [
       new THREE.BoxGeometry(0.15 + Math.random() * 0.2, 0.15 + Math.random() * 0.2, 0.05),
@@ -346,7 +331,7 @@ function animateScene(id: string, group: THREE.Group, frame: number, mX: number,
   }
 }
 
-// ─── FACILITY 3D CANVAS ───────────────────────────────────────────────────────
+
 
 function FacilityCanvas({ facilityId, active }: { facilityId: string; active: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -420,7 +405,7 @@ function FacilityCanvas({ facilityId, active }: { facilityId: string; active: bo
   return <div ref={ref} style={{ width: "100%", height: "100%" }} />;
 }
 
-// ─── TICKER ───────────────────────────────────────────────────────────────────
+
 
 function Ticker() {
   const items = FACILITIES.map(f => f.code + "  ·  " + f.short).join("   —   ");
@@ -438,7 +423,7 @@ function Ticker() {
   );
 }
 
-// ─── CURSOR CROSSHAIR ─────────────────────────────────────────────────────────
+
 
 function CrosshairCursor() {
   const x = useMotionValue(-100);
@@ -467,23 +452,20 @@ function CrosshairCursor() {
       className="fixed pointer-events-none z-50 hidden md:block"
       transition={{ opacity: { duration: 0.2 } }}
     >
-      {/* Outer ring */}
       <div
         className="absolute rounded-full"
         style={{ width: 32, height: 32, top: -16, left: -16, border: "1px solid rgba(255,255,255,0.25)" }}
       />
-      {/* Cross hairs */}
       <div style={{ position: "absolute", width: 10, height: 1, background: "rgba(255,255,255,0.5)", top: -0.5, left: -5 }} />
       <div style={{ position: "absolute", width: 10, height: 1, background: "rgba(255,255,255,0.5)", top: -0.5, right: -5 }} />
       <div style={{ position: "absolute", height: 10, width: 1, background: "rgba(255,255,255,0.5)", left: -0.5, top: -5 }} />
       <div style={{ position: "absolute", height: 10, width: 1, background: "rgba(255,255,255,0.5)", left: -0.5, bottom: -5 }} />
-      {/* Center dot */}
       <div style={{ position: "absolute", width: 3, height: 3, borderRadius: "50%", background: "white", top: -1.5, left: -1.5 }} />
     </motion.div>
   );
 }
 
-// ─── SIDEBAR NAV ──────────────────────────────────────────────────────────────
+
 
 function SidebarNav({ active, onSelect }: { active: number; onSelect: (i: number) => void }) {
   return (
@@ -523,7 +505,7 @@ function SidebarNav({ active, onSelect }: { active: number; onSelect: (i: number
   );
 }
 
-// ─── PROGRESS BAR ─────────────────────────────────────────────────────────────
+
 
 function ProgressBar({ progress }: { progress: number }) {
   return (
@@ -539,7 +521,7 @@ function ProgressBar({ progress }: { progress: number }) {
   );
 }
 
-// ─── NOISE TEXTURE OVERLAY ────────────────────────────────────────────────────
+
 
 function NoiseOverlay() {
   return (
@@ -554,7 +536,7 @@ function NoiseOverlay() {
   );
 }
 
-// ─── FACILITY PANEL (full-screen) ─────────────────────────────────────────────
+
 
 function FacilityPanel({
   facility, active, direction,
@@ -576,13 +558,13 @@ function FacilityPanel({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },  // ✅
+      transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },
     },
     exit: (dir: number) => ({
       opacity: 0,
       y: dir > 0 ? -60 : 60,
       scale: 0.97,
-      transition: { duration: 0.5, ease: [0.4, 0, 1, 1] as const },        // ✅
+      transition: { duration: 0.5, ease: [0.4, 0, 1, 1] as const },
     }),
   };
 
@@ -607,12 +589,11 @@ function FacilityPanel({
       className="absolute inset-0 grid"
       style={{ gridTemplateColumns: "1fr 1fr", cursor: "crosshair" }}
     >
-      {/* ── LEFT: TYPOGRAPHY HALF ── */}
+      
       <div
         className="relative flex flex-col justify-between p-10 md:p-16 overflow-hidden"
         style={{ borderRight: "1px solid rgba(255,255,255,0.07)" }}
       >
-        {/* Diagonal decorative line */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -621,7 +602,6 @@ function FacilityPanel({
           }}
         />
 
-        {/* Top bar */}
         <motion.div variants={textStagger} initial="enter" animate="center" exit="exit" className="flex items-center justify-between">
           <motion.div variants={textItem} className="flex items-center gap-3">
             <div
@@ -641,7 +621,6 @@ function FacilityPanel({
           </motion.div>
         </motion.div>
 
-        {/* Main name — giant diagonal-clipped type */}
         <motion.div variants={textStagger} initial="enter" animate="center" exit="exit" className="flex-1 flex flex-col justify-center py-8">
           {lines.map((line, li) => (
             <div key={li} className="overflow-hidden">
@@ -661,7 +640,6 @@ function FacilityPanel({
             </div>
           ))}
 
-          {/* Tagline */}
           <motion.p
             variants={textItem}
             className="mt-5 text-xs tracking-widest uppercase"
@@ -671,7 +649,6 @@ function FacilityPanel({
           </motion.p>
         </motion.div>
 
-        {/* Body text */}
         <motion.div variants={textStagger} initial="enter" animate="center" exit="exit" className="space-y-6">
           <motion.p
             variants={textItem}
@@ -681,7 +658,6 @@ function FacilityPanel({
             {facility.body}
           </motion.p>
 
-          {/* Spec numbers — horizontal strip */}
           <motion.div variants={textItem} className="flex gap-6 pt-2">
             {facility.numbers.map(n => (
               <div key={n.u}>
@@ -698,7 +674,6 @@ function FacilityPanel({
             ))}
           </motion.div>
 
-          {/* CTA row */}
           <motion.div variants={textItem} className="flex items-center gap-4 pt-1">
             <button
               className="flex items-center gap-2 group"
@@ -715,18 +690,14 @@ function FacilityPanel({
         </motion.div>
       </div>
 
-      {/* ── RIGHT: 3D CANVAS HALF ── */}
       <div className="relative overflow-hidden" style={{ background: "rgba(0,0,0,0.2)" }}>
-        {/* Full-bleed 3D */}
         <div style={{ position: "absolute", inset: 0 }}>
           <FacilityCanvas facilityId={facility.scene} active={active} />
         </div>
 
-        {/* Vignette edges */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(0,0,0,0.5) 100%)" }} />
         <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to left, transparent 50%, rgba(0,0,0,0.2) 100%)" }} />
 
-        {/* Corner code label */}
         <div
           className="absolute bottom-6 left-6 px-3 py-1.5 rounded-full"
           style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(8px)" }}
@@ -739,8 +710,6 @@ function FacilityPanel({
     </motion.div>
   );
 }
-
-// ─── GRID OVERVIEW MODAL ──────────────────────────────────────────────────────
 
 function GridOverview({
   onSelect, onClose,
@@ -757,7 +726,6 @@ function GridOverview({
       className="fixed inset-0 z-50 overflow-auto"
       style={{ background: "rgba(0,0,0,0.96)", backdropFilter: "blur(16px)" }}
     >
-      {/* Close */}
       <button
         onClick={onClose}
         className="fixed top-8 right-8 z-60 flex items-center gap-2"
@@ -808,8 +776,6 @@ function GridOverview({
   );
 }
 
-// ─── MAIN EXPERIENCE ──────────────────────────────────────────────────────────
-
 export default function FacilitiesExperience() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -825,7 +791,6 @@ export default function FacilitiesExperience() {
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-  // Wheel navigation
   useEffect(() => {
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
@@ -838,7 +803,6 @@ export default function FacilitiesExperience() {
     return () => window.removeEventListener("wheel", onWheel);
   }, [next, prev]);
 
-  // Keyboard
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowDown" || e.key === "ArrowRight") next();
@@ -850,7 +814,6 @@ export default function FacilitiesExperience() {
     return () => window.removeEventListener("keydown", onKey);
   }, [next, prev]);
 
-  // Touch
   const touchStart = useRef(0);
   const onTouchStart = (e: React.TouchEvent) => { touchStart.current = e.touches[0].clientY; };
   const onTouchEnd = (e: React.TouchEvent) => {
@@ -870,7 +833,6 @@ export default function FacilitiesExperience() {
       <CrosshairCursor />
       <NoiseOverlay />
 
-      {/* Fixed BG grid */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
@@ -881,23 +843,17 @@ export default function FacilitiesExperience() {
       />
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0, background: "radial-gradient(ellipse 100% 100% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 60%)" }} />
 
-      {/* Ticker */}
       <div className="fixed top-0 left-0 right-0 z-40">
         <Ticker />
       </div>
 
-      {/* Sidebar nav */}
       <SidebarNav active={current} onSelect={goTo} />
 
-      {/* Progress bar */}
       <ProgressBar progress={progress} />
 
-      {/* Main panel area */}
       <div className="relative" style={{ height: "100vh", zIndex: 10 }}>
-        {/* Ticker spacer */}
         <div style={{ height: "30px" }} />
 
-        {/* Full-screen panel stack */}
         <div className="relative" style={{ height: "calc(100vh - 30px)" }}>
           <AnimatePresence custom={direction} mode="wait">
             <FacilityPanel
@@ -910,12 +866,10 @@ export default function FacilitiesExperience() {
         </div>
       </div>
 
-      {/* Bottom UI bar */}
       <div
         className="fixed bottom-4 left-0 right-0 z-40 flex items-center justify-between px-8 md:px-14"
         style={{ pointerEvents: "none" }}
       >
-        {/* Prev / Next */}
         <div className="flex items-center gap-3" style={{ pointerEvents: "auto" }}>
           <button
             onClick={prev}
@@ -945,7 +899,6 @@ export default function FacilitiesExperience() {
           </button>
         </div>
 
-        {/* Dot indicators */}
         <div className="flex items-center gap-1.5">
           {FACILITIES.map((_, i) => (
             <button
@@ -965,7 +918,6 @@ export default function FacilitiesExperience() {
           ))}
         </div>
 
-        {/* Grid toggle */}
         <button
           onClick={() => setShowGrid(true)}
           className="flex items-center gap-2 px-4 py-2 rounded-full text-[9px] tracking-widest uppercase transition-all duration-200"
@@ -982,14 +934,12 @@ export default function FacilitiesExperience() {
         </button>
       </div>
 
-      {/* Grid Overview modal */}
       <AnimatePresence>
         {showGrid && (
           <GridOverview onSelect={goTo} onClose={() => setShowGrid(false)} />
         )}
       </AnimatePresence>
 
-      {/* Keyboard hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -8,7 +8,7 @@ import {
   ArrowUpRight, Atom, Radio, Cpu, Brain,
 } from "lucide-react";
 
-// ─── AMBIENT CANVAS ───────────────────────────────────────────────────────────
+
 
 function FooterCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -61,7 +61,7 @@ function FooterCanvas() {
   );
 }
 
-// ─── SPINNING CUBE (replaces old one, now uses CSS 3D like original but elevated) ──
+
 
 function SpinningCube({ size = 22 }: { size?: number }) {
   return (
@@ -96,7 +96,6 @@ function SpinningCube({ size = 22 }: { size?: number }) {
   );
 }
 
-// ─── TICKER ───────────────────────────────────────────────────────────────────
 
 function FooterTicker() {
   const items = [
@@ -127,7 +126,6 @@ function FooterTicker() {
   );
 }
 
-// ─── STAT COUNTER ─────────────────────────────────────────────────────────────
 
 function StatCounter({ value, label }: { value: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -153,7 +151,7 @@ function StatCounter({ value, label }: { value: string; label: string }) {
   );
 }
 
-// ─── NAV LINK ─────────────────────────────────────────────────────────────────
+
 
 function NavLink({ label, href }: { label: string; href: string }) {
   return (
@@ -174,7 +172,7 @@ function NavLink({ label, href }: { label: string; href: string }) {
   );
 }
 
-// ─── SOCIAL ICON ──────────────────────────────────────────────────────────────
+
 
 function SocialBtn({ icon, href, label }: { icon: React.ReactNode; href: string; label: string }) {
   return (
@@ -198,7 +196,6 @@ function SocialBtn({ icon, href, label }: { icon: React.ReactNode; href: string;
   );
 }
 
-// ─── SUBMIT BUTTON with animation ─────────────────────────────────────────────
 
 function SubmitBtn() {
   const [sent, setSent] = useState(false);
@@ -247,7 +244,6 @@ function SubmitBtn() {
   );
 }
 
-// ─── MAIN FOOTER ──────────────────────────────────────────────────────────────
 
 const NAV_COLS = [
   {
@@ -309,7 +305,7 @@ export default function Footer() {
         zIndex: 10,
       }}
     >
-      {/* inject keyframes */}
+      
       <style>{`
         @keyframes footerSpin {
           0%   { transform: rotateX(0deg) rotateY(0deg); }
@@ -317,12 +313,12 @@ export default function Footer() {
         }
       `}</style>
 
-      {/* Background canvas */}
+      
       <div className="absolute inset-0" style={{ zIndex: 0 }}>
         <FooterCanvas />
       </div>
 
-      {/* Dot-grid overlay */}
+      
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -361,7 +357,7 @@ export default function Footer() {
           ))}
         </motion.div>
 
-        {/* ── MAIN GRID ── */}
+        
         <div
           className="grid"
           style={{
@@ -369,12 +365,12 @@ export default function Footer() {
             borderBottom: "1px solid rgba(255,255,255,0.06)",
           }}
         >
-          {/* Left block — brand + newsletter + labs */}
+          
           <div
             className="p-10 md:p-14 flex flex-col gap-10"
             style={{ borderRight: "1px solid rgba(255,255,255,0.06)" }}
           >
-            {/* Brand */}
+            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -400,7 +396,7 @@ export default function Footer() {
               </p>
             </motion.div>
 
-            {/* Newsletter */}
+            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -436,7 +432,7 @@ export default function Footer() {
               </div>
             </motion.div>
 
-            {/* Lab icon strip */}
+            
             <motion.div
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}

@@ -31,7 +31,6 @@ import {
 
 import { useRouter } from "next/navigation";
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
 
 const stats = [
   {
@@ -152,7 +151,6 @@ const techStack = [
   { name: "Autonomous Robotics Systems", icon: Sparkles },
 ];
 
-// ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
 
 function AnimatedCounter({
   target,
@@ -186,7 +184,6 @@ function AnimatedCounter({
   );
 }
 
-// ─── THREE.JS NEURAL GLOBE ────────────────────────────────────────────────────
 
 function NeuralGlobe() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -196,19 +193,19 @@ function NeuralGlobe() {
     const W = mountRef.current.clientWidth;
     const H = mountRef.current.clientHeight;
 
-    // Renderer
+    
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(W, H);
     renderer.setClearColor(0x000000, 0);
     mountRef.current.appendChild(renderer.domElement);
 
-    // Scene & Camera
+  
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 1000);
     camera.position.set(0, 0, 4.5);
 
-    // ── Wireframe sphere (globe shell)
+    
     const globeGeo = new THREE.SphereGeometry(1.6, 32, 32);
     const globeMat = new THREE.MeshBasicMaterial({
       color: 0xffffff,
@@ -219,7 +216,7 @@ function NeuralGlobe() {
     const globe = new THREE.Mesh(globeGeo, globeMat);
     scene.add(globe);
 
-    // ── Dense dot-cloud on sphere surface
+    
     const dotCount = 900;
     const dotPositions: number[] = [];
     for (let i = 0; i < dotCount; i++) {
@@ -245,7 +242,7 @@ function NeuralGlobe() {
     });
     scene.add(new THREE.Points(dotGeo, dotMat));
 
-    // ── Floating node clusters (orbiting spheres)
+    
     const nodeGroup = new THREE.Group();
     const nodeCount = 28;
     const nodes: {
@@ -279,7 +276,6 @@ function NeuralGlobe() {
     }
     scene.add(nodeGroup);
 
-    // ── Connection lines between nearby nodes
     const linesMat = new THREE.LineBasicMaterial({
       color: 0xffffff,
       transparent: true,
@@ -1265,7 +1261,7 @@ export default function AboutPage() {
             </motion.div>
           </motion.section>
 
-          {/* ════ TESTIMONIALS ══════════════════════════════════ */}
+          
           <motion.section
             variants={fadeUp}
             initial="hidden"
