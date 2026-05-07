@@ -812,7 +812,7 @@ export default function AboutPage() {
                   onClick={() => router.push("/facilities")}
                   className="px-10 py-3.5 border border-white/20 text-white/55 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:border-white/45 hover:text-white"
                 >
-                  Our Faicilities
+                  Our Facilities
                 </button>
               </div>
             </motion.div>
